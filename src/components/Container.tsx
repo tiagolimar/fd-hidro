@@ -2,10 +2,11 @@ type ContainerProps = {
   children: React.ReactNode;
 };
 
-const Container = ({children} : ContainerProps) => {
+const Container = (children: ContainerProps) => {
+  console.log(children)
   return (
-    <div>
-      {children}
+    <div className="border shadow-lg">
+      {children.children}
     </div>
   )
 }
