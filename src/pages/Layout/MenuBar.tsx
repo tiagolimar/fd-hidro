@@ -19,7 +19,7 @@ function MenuBar() {
                 <li className="list-none flex flex-col text-center justify-evenly bg-stone-300 text-bold">
                     <ItemMenu link="" icon="Home" />
                     <ItemMenu link="pecas" icon="Peças Hidráulicas" />
-                    <ItemMenu link="blogs" icon="Blog" />
+                    <ItemMenu link="conjuntos" icon="Conjuntos de Peças" />
                 </li>
             </nav>
         </aside>

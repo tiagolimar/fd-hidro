@@ -27,6 +27,16 @@ export function getFittings(): HydraulicFitting[] {
   return data ? JSON.parse(data) : [];
 }
 
+export function getFittingById(id: number): HydraulicFitting | undefined {
+    const fittings = getFittings();
+    return fittings.find((fitting) => fitting.id === id);
+}
+
+export function getFittingByIds(ids: number[]): HydraulicFitting[] {
+    const fittings = getFittings();
+    return fittings.filter((fitting) => ids.includes(fitting.id));
+}
+
 export function addFittingService(fitting: HydraulicFitting) {
   const fittings = getFittings();
   fittings.push(fitting);

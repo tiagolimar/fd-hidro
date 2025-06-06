@@ -4,16 +4,8 @@ import FittingsSettings from "./FittingsSettings";
 import { useState } from "react";
 import type { setFittingsProps } from "./setFittingsProps";
 import { Toaster, toast } from 'sonner';
-
-function Fittings({children}: {children: React.ReactNode}) {
-    return (
-        <article>
-			<div className="container px-4 flex flex-wrap gap-4 justify-between">
-				{children}
-			</div>
-		</article>
-    )
-}
+import CardContainer from "../../components/CardContainer";
+import Card from "../../components/Card";
 
 function removeFitting(fitting: HydraulicFitting, setFittings: setFittingsProps) {
 	if (confirm("Tem certeza que deseja remover esta peça?")) {
@@ -23,14 +15,14 @@ function removeFitting(fitting: HydraulicFitting, setFittings: setFittingsProps)
 	}
 }
 
-function Fitting({fitting, setFittings}: {fitting: HydraulicFitting, setFittings: setFittingsProps}) {
+function FittingCard ({fitting, setFittings}: {fitting: HydraulicFitting, setFittings: setFittingsProps}) {
     return (
-      <div data-id={fitting.id} className="border shadow-sm hover:shadow-lg hover:shadow-stone-300 transition-shadow p-4 rounded-lg border-stone-300 flex flex-col gap-2 flex-1 min-w-[200px] text-center">
+      <Card data-id={fitting.id}>
         <h2 className="bg-stone-200 rounded">{fitting.name}</h2>
         <p className="bg-stone-100 rounded">{fitting.abreviation}</p>
         <p className="bg-stone-100 rounded">{fitting.relativeWeight}</p>
         <button onClick={() => {removeFitting(fitting, setFittings)}} className="btn-danger">Excluir</button>
-      </div>
+      </Card>
     )
 }
 
@@ -43,11 +35,11 @@ function FittingsEditor() {
 			<Toaster />
 			<h1 className="my-4">Menu de Edição de Peças Hidráulicas</h1>
 			<FittingsSettings setFittings={setFittings} />
-			<Fittings>
+			<CardContainer>
 				{fittings.map((fitting) => (
-					<Fitting key={fitting.id} fitting={fitting} setFittings={setFittings} />
+					<FittingCard key={fitting.id} fitting={fitting} setFittings={setFittings} />
 				))}
-			</Fittings>
+			</CardContainer>
 		</section>
 	)
 }
