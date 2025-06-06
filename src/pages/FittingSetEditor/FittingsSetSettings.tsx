@@ -1,5 +1,5 @@
-import type { HydraulicFitting } from "@/types/HydraulicFittingType";
-import { addFittingService, generateNextId, getFittings, initFittingsStorage } from "../../service/fittingsService";
+import type { HydraulicFittingSet } from "@/types/HydraulicFittingSetType";
+import { addFittingSetService, generateNextId, getFittingsSets, initFittingsSetsStorage } from "../../service/fittingsServiceSet";
 import { Toaster, toast } from 'sonner';
 import { useState } from "react";
 import type { setFittingsSetsProps } from "./setFittingsSetsProps";
@@ -20,11 +20,11 @@ function addFitting(fittingSet: HydraulicFittingSet, setFittingsSets: setFitting
     toast("Peça adicionada com sucesso!");
 }
 
-function AddFittingModal({setFittingsSets, showModal, setShowModal}: {setFittingsSets: setFittingsSetsProps, showModal: boolean, setShowModal: React.Dispatch<React.SetStateAction<boolean>>}) {
+function AddFittingSetModal({setFittingsSets, showModal, setShowModal}: {setFittingsSets: setFittingsSetsProps, showModal: boolean, setShowModal: React.Dispatch<React.SetStateAction<boolean>>}) {
     const [fittingSet, setFittingSet] = useState({
         id: 0,
         name: "Conjunto de Peças",
-        fittings: [],
+        fittingsIds: [],
     } as HydraulicFittingSet);
     
     function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -68,7 +68,7 @@ export default function FittingsSettings( {setFittingsSets}: {setFittingsSets: s
             <Toaster />
             <button className="flex-1 btn-primary" onClick={() => setShowModal(true)}>Adicionar Peça</button>	
             <button className="flex-1 btn-secondary" onClick={() => resetFittings(setFittingsSets)}>Resetar Peças</button>	
-            <AddFittingModal setFittingsSets={setFittingsSets} showModal={showModal} setShowModal={setShowModal} />
+            <AddFittingSetModal setFittingsSets={setFittingsSets} showModal={showModal} setShowModal={setShowModal} />
         </div>
     )
 }

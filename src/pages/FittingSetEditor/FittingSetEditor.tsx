@@ -6,6 +6,8 @@ import CardContainer from "../../components/CardContainer";
 import Card from "../../components/Card";
 import { getFittingsSets } from "../../service/fittingsServiceSet";
 import type { HydraulicFittingSet } from "@/types/HydraulicFittingSetType";
+import { getFittingByIds } from "../../service/fittingsService";
+import type { HydraulicFitting } from "@/types/HydraulicFittingType";
 
 function removeFittingSet(fittingSet: HydraulicFittingSet, setFittingsSets: setFittingsSetsProps) {
 	if (confirm("Tem certeza que deseja remover este conjunto de peças?")) {
@@ -16,10 +18,12 @@ function removeFittingSet(fittingSet: HydraulicFittingSet, setFittingsSets: setF
 }
 
 function FittingSetCard ({fittingSet, setFittingsSets}: {fittingSet: HydraulicFittingSet, setFittingsSets: setFittingsSetsProps}) {
+    const fittings = getFittingByIds(fittingSet.fittingsIds);
     return (
       <Card data-id={fittingSet.id}>
         <h2 className="bg-stone-200 rounded">{fittingSet.name}</h2>
-        <p className="bg-stone-100 rounded">{fittingSet.fittings.length}</p>
+        <p className="bg-stone-100 rounded">{fittings.map((fitting: HydraulicFitting) => fitting.abreviation).join(", ")}</p>
+        <button className="btn-primary">Editar</button>
         <button onClick={() => {removeFittingSet(fittingSet, setFittingsSets)}} className="btn-danger">Excluir</button>
       </Card>
     )
@@ -27,7 +31,6 @@ function FittingSetCard ({fittingSet, setFittingsSets}: {fittingSet: HydraulicFi
 
 export default function FittingsEditor() {
 	const [fittingsSets, setFittingsSets] = useState(getFittingsSets());
-
 	return (
 		<section className="container mx-auto pb-4">
 			<Toaster />
@@ -37,7 +40,8 @@ export default function FittingsEditor() {
 				{fittingsSets.length > 0 ? 
                     fittingsSets.map((fittingSet) => (
 					    <FittingSetCard key={fittingSet.id} fittingSet={fittingSet} setFittingsSets={setFittingsSets} />
-				)) : <p>Nenhum conjunto de peças cadastrado</p>}
+				    )) : <p>Nenhum conjunto de peças cadastrado</p>
+                }
 			</CardContainer>
 		</section>
 	)

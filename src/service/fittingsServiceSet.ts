@@ -27,23 +27,41 @@ export function generateNextId() {
 }
 
 function initFittingsSetsStorage() {
+  const dataFittingsSets = [
+    {
+      id: 1,
+      name: "WC",
+      fittingsIds: [1, 2, 4, 5],
+    },
+    {
+      id: 2,
+      name: "Lavabo",
+      fittingsIds: [1, 2, 4],
+    },
+    {
+      id: 3,
+      name: "Área de Serviço e Cozinha",
+      fittingsIds: [7, 10, 9],
+    },
+  ]
+  
   localStorage.setItem(
     STORAGE_KEY,
     JSON.stringify([
       {
         id: 1,
-        name: "Conjunto de Peças",
-        fittings: [1, 2, 3],
+        name: "WC",
+        fittingsIds: [1, 2, 4, 5],
       },
       {
         id: 2,
-        name: "Conjunto de Peças",
-        fittings: [2, 3, 5],
+        name: "Lavabo",
+        fittingsIds: [1, 2, 4],
       },
       {
         id: 3,
-        name: "Conjunto de Peças",
-        fittings: [7, 8, 9],
+        name: "Área de Serviço e Cozinha",
+        fittingsIds: [7, 10, 9],
       },
     ])
   );

@@ -1,5 +1,8 @@
+import type { HydraulicFittingMount } from "./HydraulicFittingMountType";
+
 export interface HydraulicFittingSet {
     id: number;
     name: string;
-    fittings: number[];
+    fittingsMounts: HydraulicFittingMount[];
+    totalWeight: number;
 }
