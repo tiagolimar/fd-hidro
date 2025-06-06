@@ -16,9 +16,11 @@ function Fittings({children}: {children: React.ReactNode}) {
 }
 
 function removeFitting(fitting: HydraulicFitting, setFittings: setFittingsProps) {
-    removeFittingService(fitting.id);
-	toast("Peça removida com sucesso!");
-    setFittings(getFittings());
+	if (confirm("Tem certeza que deseja remover esta peça?")) {
+		removeFittingService(fitting.id);
+		toast("Peça removida com sucesso!");
+		setFittings(getFittings());
+	}
 }
 
 function Fitting({fitting, setFittings}: {fitting: HydraulicFitting, setFittings: setFittingsProps}) {
