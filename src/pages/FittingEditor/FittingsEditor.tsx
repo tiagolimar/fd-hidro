@@ -4,8 +4,9 @@ import FittingsSettings from "./FittingsSettings";
 import { useState } from "react";
 import type { setFittingsProps } from "./setFittingsProps";
 import { Toaster, toast } from 'sonner';
-import CardContainer from "../../components/CardContainer";
-import Card from "../../components/Card";
+import CardContainer from "@/components/Cards/CardContainer";
+import Card from "@/components/Cards/Card";
+import CardAdd from "@/components/Cards/CardAdd";
 
 function removeFitting(fitting: HydraulicFitting, setFittings: setFittingsProps) {
 	if (confirm("Tem certeza que deseja remover esta peça?")) {
@@ -36,6 +37,7 @@ function FittingsEditor() {
 			<h1 className="my-4">Menu de Edição de Peças Hidráulicas</h1>
 			<FittingsSettings setFittings={setFittings} />
 			<CardContainer>
+				<CardAdd title="Adicionar Peça" />
 				{fittings.map((fitting) => (
 					<FittingCard key={fitting.id} fitting={fitting} setFittings={setFittings} />
 				))}

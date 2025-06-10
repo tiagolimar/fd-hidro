@@ -66,7 +66,7 @@ function AddFittingModal({setFittings, showModal, setShowModal}: {setFittings: s
     )
 }
 
-export default function FittingsSettings( {setFittings}: {setFittings: setFittingsProps} ) {
+export default function FittingsSettings({setFittings}: {setFittings: setFittingsProps} ) {
     const [showModal, setShowModal] = useState(false);
     return (
         <div className="flex gap-4 py-4 mb-4 border-b border-t border-stone-500">
