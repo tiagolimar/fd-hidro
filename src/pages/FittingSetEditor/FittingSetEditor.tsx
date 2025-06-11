@@ -8,6 +8,7 @@ import { getFittingsSets } from "../../service/fittingsServiceSet";
 import type { HydraulicFittingSet } from "@/types/HydraulicFittingSetType";
 import { getFittingByIds } from "../../service/fittingsService";
 import type { HydraulicFitting } from "@/types/HydraulicFittingType";
+import CardAdd from "@/components/Cards/CardAdd";
 
 function removeFittingSet(fittingSet: HydraulicFittingSet, setFittingsSets: setFittingsSetsProps) {
 	if (confirm("Tem certeza que deseja remover este conjunto de peças?")) {
@@ -37,6 +38,7 @@ export default function FittingsEditor() {
 			<h1 className="my-4">Menu de Edição de Conjunto de Peças</h1>
 			{/* <FittingsSetSettings setFittingsSets={setFittingsSets} /> */}
 			<CardContainer>
+				<CardAdd title="Adicionar Conjunto de Peças" onClick={()=>{}} />
 				{fittingsSets.length > 0 ? 
                     fittingsSets.map((fittingSet) => (
 					    <FittingSetCard key={fittingSet.id} fittingSet={fittingSet} setFittingsSets={setFittingsSets} />
