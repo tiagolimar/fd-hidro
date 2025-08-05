@@ -1,3 +1,3 @@
-import type { HydraulicFittingSet } from "@/types/FittingSetType";
+import type { HydraulicFittingSet } from "@/models/FittingSetType";
 
 export type setFittingsSetsProps = React.Dispatch<React.SetStateAction<HydraulicFittingSet[]>>

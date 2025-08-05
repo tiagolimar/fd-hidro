@@ -1,4 +1,4 @@
-import type { HydraulicFitting } from "@/types/FittingType";
+import type { HydraulicFitting } from "@/models/FittingType";
 import { removeFittingService, getFittings, initFittingsStorage } from "../../service/fittingsService";
 import FittingsSettings from "./FittingsSettings";
 import { useState } from "react";

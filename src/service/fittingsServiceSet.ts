@@ -1,4 +1,4 @@
-import type { FittingSet } from "@/types/FittingSetType";
+import type { FittingSet } from "@/models/FittingSetType";
 
 const STORAGE_KEY = "hydraulicFittingsSets";
 
