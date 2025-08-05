@@ -1,4 +1,4 @@
-import type { HydraulicFitting } from "@/types/HydraulicFittingType";
+import type { HydraulicFitting } from "@/types/FittingType";
 import { addFittingService, generateNextId, getFittings, initFittingsStorage } from "../../service/fittingsService";
 import { Toaster, toast } from 'sonner';
 import { useState } from "react";

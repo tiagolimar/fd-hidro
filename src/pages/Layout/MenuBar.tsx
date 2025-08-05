@@ -20,6 +20,8 @@ function MenuBar() {
                     <ItemMenu link="" icon="Home" />
                     <ItemMenu link="pecas" icon="Peças Hidráulicas" />
                     <ItemMenu link="conjuntos" icon="Conjuntos de Peças" />
+                    <ItemMenu link="pavimentos" icon="Pavimentos" />
+                    <ItemMenu link="prumadas" icon="Prumadas" />
                 </li>
             </nav>
         </aside>

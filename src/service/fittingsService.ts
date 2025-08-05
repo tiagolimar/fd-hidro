@@ -1,4 +1,4 @@
-import type { HydraulicFitting } from '@/types/HydraulicFittingType';
+import type { HydraulicFitting } from '@/types/FittingType';
 
 const STORAGE_KEY = 'hydraulicFittings';
 

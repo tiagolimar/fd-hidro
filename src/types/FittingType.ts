@@ -1,6 +1,4 @@
-// src/types/HydraulicFitting.ts
-
-export interface HydraulicFitting {
+export interface Fitting {
   id: number;
   abreviation: string;
   name: string;

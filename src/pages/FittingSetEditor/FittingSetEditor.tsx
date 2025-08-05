@@ -5,9 +5,9 @@ import { Toaster, toast } from 'sonner';
 import CardContainer from "../../components/Cards/CardContainer";
 import Card from "../../components/Cards/Card";
 import { getFittingsSets } from "../../service/fittingsServiceSet";
-import type { HydraulicFittingSet } from "@/types/HydraulicFittingSetType";
+import type { HydraulicFittingSet } from "@/types/FittingSetType";
 import { getFittingByIds } from "../../service/fittingsService";
-import type { HydraulicFitting } from "@/types/HydraulicFittingType";
+import type { HydraulicFitting } from "@/types/FittingType";
 
 function removeFittingSet(fittingSet: HydraulicFittingSet, setFittingsSets: setFittingsSetsProps) {
 	if (confirm("Tem certeza que deseja remover este conjunto de peças?")) {
