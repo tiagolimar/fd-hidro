@@ -18,7 +18,7 @@ function removeFitting(fitting: HydraulicFitting, setFittings: setFittingsProps)
 
 function FittingCard ({fitting, setFittings}: {fitting: HydraulicFitting, setFittings: setFittingsProps}) {
     return (
-      <Card data-id={fitting.id}>
+      <Card data-id={fitting.id} className="hover:border-stone-500">
         <h2 className="bg-stone-200 rounded">{fitting.name}</h2>
         <p className="bg-stone-100 rounded">{fitting.abreviation}</p>
         <p className="bg-stone-100 rounded">{fitting.relativeWeight}</p>
