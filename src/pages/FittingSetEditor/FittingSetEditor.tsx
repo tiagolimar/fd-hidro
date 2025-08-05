@@ -5,24 +5,19 @@ import { Toaster, toast } from 'sonner';
 import CardContainer from "../../components/Cards/CardContainer";
 import Card from "../../components/Cards/Card";
 import { getFittingsSets } from "../../service/fittingsServiceSet";
-import type { HydraulicFittingSet } from "@/types/FittingSetType";
+import type { FittingSet } from "@/types/FittingSetType";
 import { getFittingByIds } from "../../service/fittingsService";
-<<<<<<< HEAD
 import type { HydraulicFitting } from "@/types/FittingType";
-=======
-import type { HydraulicFitting } from "@/types/HydraulicFittingType";
-import CardAdd from "@/components/Cards/CardAdd";
->>>>>>> f32df70c7072fd13546964697542874f2c537f20
 
-function removeFittingSet(fittingSet: HydraulicFittingSet, setFittingsSets: setFittingsSetsProps) {
+function removeFittingSet(fittingSet: FittingSet, setFittingsSets: setFittingsSetsProps) {
 	if (confirm("Tem certeza que deseja remover este conjunto de peças?")) {
 		removeFittingSetService(fittingSet.id);
-		toast("Conjunto de peças removido com sucesso!");
+		toast("Conjunto de peças removido com sucesso!"	);
 		setFittingsSets(getFittingsSets());
 	}
 }
 
-function FittingSetCard ({fittingSet, setFittingsSets}: {fittingSet: HydraulicFittingSet, setFittingsSets: setFittingsSetsProps}) {
+function FittingSetCard ({fittingSet, setFittingsSets}: {fittingSet: FittingSet, setFittingsSets: setFittingsSetsProps}) {
     const fittings = getFittingByIds(fittingSet.fittingsIds);
     return (
       <Card data-id={fittingSet.id}>

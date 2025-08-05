@@ -1,13 +1,13 @@
-import type { HydraulicFittingSet } from "@/types/FittingSetType";
+import type { FittingSet } from "@/types/FittingSetType";
 
 const STORAGE_KEY = "hydraulicFittingsSets";
 
-export function getFittingsSets(): HydraulicFittingSet[] {
+export function getFittingsSets(): FittingSet[] {
   const data = localStorage.getItem(STORAGE_KEY);
   return data ? JSON.parse(data) : [];
 }
 
-export function addFittingSetService(fittingSet: HydraulicFittingSet) {
+export function addFittingSetService(fittingSet: FittingSet) {
   const fittingsSets = getFittingsSets();
   fittingsSets.push(fittingSet);
   localStorage.setItem(STORAGE_KEY, JSON.stringify(fittingsSets));
@@ -47,23 +47,7 @@ function initFittingsSetsStorage() {
   
   localStorage.setItem(
     STORAGE_KEY,
-    JSON.stringify([
-      {
-        id: 1,
-        name: "WC",
-        fittingsIds: [1, 2, 4, 5],
-      },
-      {
-        id: 2,
-        name: "Lavabo",
-        fittingsIds: [1, 2, 4],
-      },
-      {
-        id: 3,
-        name: "Área de Serviço e Cozinha",
-        fittingsIds: [7, 10, 9],
-      },
-    ])
+    JSON.stringify(dataFittingsSets)
   );
 }
 
