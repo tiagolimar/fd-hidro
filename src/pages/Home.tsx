@@ -1,15 +1,5 @@
-import React from 'react'
-import Card from '../components/Cards/Card';
-import CardContainer from '../components/Cards/CardContainer';
-
-const Home = () => {
+export default function Home() {
   return (
-    <CardContainer>
-      <Card className="flex justify-center items-center">
-        <img width="50" height="50" src="https://img.icons8.com/ios/50/add--v1.png" alt="add--v1"/>
-      </Card>
-    </CardContainer>
+    <h1>Oi som</h1>
   )
 }
-
-export default Home

@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 
 function ItemMenu({link, icon}: {link: string, icon: string}) {
@@ -18,7 +17,7 @@ function MenuBar() {
             <nav>
                 <li className="list-none flex flex-col text-center justify-evenly bg-stone-300 text-bold">
                     <ItemMenu link="" icon="Home" />
-                    <ItemMenu link="pecas" icon="Peças Hidráulicas" />
+                    <ItemMenu link="equipamentos" icon="Peças Hidráulicas" />
                     <ItemMenu link="conjuntos" icon="Conjuntos de Peças" />
                     <ItemMenu link="pavimentos" icon="Pavimentos" />
                     <ItemMenu link="prumadas" icon="Prumadas" />

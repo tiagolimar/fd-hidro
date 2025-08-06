@@ -3,10 +3,10 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Layout from '@/pages/Layout/Layout'
 import Home from '@/pages/Home'
 
-import FittingsEditor from '@/pages/FittingEditor/FittingsEditor'
-import FittingSetEditor from '@/pages/FittingSetEditor/FittingSetEditor'
-import LevelsEditor from '@/pages/LevelsEditor/LevelsEditor'
-import PipesEditor from '@/pages/PipesEditor/PipesEditor'
+import EquipamentsEditor from '@/pages/EquipamentsEditor'
+import EquipamentSetsEditor from '@/pages/EquipamentSetsEditor'
+import LevelsEditor from '@/pages/LevelsEditor'
+import DownPipesEditor from '@/pages/DownPipesEditor'
 
 import NoPage from '@/pages/NoPage'
 
@@ -16,10 +16,10 @@ export function RoutesApp (){
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="pecas" element={<FittingsEditor />} />
-          <Route path="conjuntos" element={<FittingSetEditor />} />
+          <Route path="pecas" element={<EquipamentsEditor />} />
+          <Route path="conjuntos" element={<EquipamentSetsEditor />} />
           <Route path="pavimentos" element={<LevelsEditor />} />
-          <Route path="prumadas" element={<PipesEditor />} />
+          <Route path="prumadas" element={<DownPipesEditor />} />
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>
