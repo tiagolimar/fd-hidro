@@ -16,7 +16,7 @@ export function RoutesApp (){
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="pecas" element={<EquipamentsEditor />} />
+          <Route path="equipamentos" element={<EquipamentsEditor />} />
           <Route path="conjuntos" element={<EquipamentSetsEditor />} />
           <Route path="pavimentos" element={<LevelsEditor />} />
           <Route path="prumadas" element={<DownPipesEditor />} />
