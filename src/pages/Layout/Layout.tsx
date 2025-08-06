@@ -3,10 +3,12 @@ import MenuBar from "./MenuBar";
 
 const Layout = () => {
     return (
-        <main className="flex">
+        <div className="flex">
             <MenuBar />
-            <Outlet />
-        </main>
+            <main className="flex-1 h-screen overflow-auto">
+                <Outlet />
+            </main>
+        </div>
     );
 };
 

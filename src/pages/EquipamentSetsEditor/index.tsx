@@ -1,10 +1,21 @@
+import { useEffect, useState } from "react";
 import { Toaster } from "sonner";
+import type { EquipamentSet } from "@/models/EquipamentSet";
+import EquipamentSetRepository from "@/repositories/EquipamentSetRepository";
+import Table from "@/components/Table/Table";
 
 export default function EquipamentSetsEditor() {
+	const [equipamentSets, setEquipamentSets] = useState<EquipamentSet[]>([]);
+	
+	useEffect(() => {
+		EquipamentSetRepository.getAll().then(setEquipamentSets);
+	}, []);
+	
 	return (
 		<section className="container mx-auto pb-4">
 			<Toaster />
 			<h1 className="my-4">Menu de Edição de Conjunto de Peças</h1>
+			<Table data={equipamentSets} />
 		</section>
 	)
 }

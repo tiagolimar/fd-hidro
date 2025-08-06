@@ -13,9 +13,9 @@ export default function LevelsEditor() {
 
   return (
     <section className="container mx-auto">
-        <Toaster />
-        <h1 className="my-4">Níveis</h1>
-        <Table data={levels} />
+      <Toaster />
+      <h1 className="my-4">Níveis</h1>
+      <Table data={levels} />
     </section>
-  )
+  );
 }

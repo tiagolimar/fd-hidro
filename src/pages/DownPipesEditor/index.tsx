@@ -1,11 +1,21 @@
+import { useEffect, useState } from 'react';
 import { Toaster } from 'sonner';
+import type { DownPipe } from '@/models/DownPipe';
+import DownPipeRepository from '@/repositories/DownPipeRepository';
+import Table from '@/components/Table/Table';
 
 export default function DownPipesEditor() {
-
+	const [downpipes, setDownpipes] = useState<DownPipe[]>([]);
+	
+	useEffect(() => {
+		DownPipeRepository.getAll().then(setDownpipes);
+	}, []);
+	
 	return (
 		<section className="container mx-auto pb-4">
 			<Toaster />
 			<h1 className="my-4">Menu de Edição de Prumadas</h1>
+			<Table data={downpipes} />
 		</section>
 	)
 }
