@@ -1,17 +1,17 @@
 import Dexie, { type Table } from 'dexie';
-import type { System } from '@/models/System';
-import type { Equipament } from '@/models/Equipament';
-import type { EquipamentSet } from '@/models/EquipamentSet';
-import type { Level } from '@/models/Level';
-import type { Contribution } from '@/models/Contribution';
-import type { DownPipe } from '@/models/DownPipe';
-import type { Memorial } from '@/models/Memorial';
+import { System } from '@/models/System';
+import { Level } from '@/models/Level';
+import { Equipament } from '@/models/Equipament';
+import { EquipamentSet } from '@/models/EquipamentSet';
+import { Contribution } from '@/models/Contribution';
+import { DownPipe } from '@/models/DownPipe';
+import { Memorial } from '@/models/Memorial';
 
-class AppDB extends Dexie {
+export class AppDB extends Dexie {
   systems!: Table<System, number>;
+  levels!: Table<Level, number>;
   equipaments!: Table<Equipament, number>;
   equipamentSets!: Table<EquipamentSet, number>;
-  levels!: Table<Level, number>;
   contributions!: Table<Contribution, number>;
   downpipes!: Table<DownPipe, number>;
   memorials!: Table<Memorial, number>;
@@ -19,17 +19,23 @@ class AppDB extends Dexie {
   constructor() {
     super('fd-hidro');
     this.version(1).stores({
-      systems: '++id, name, systemAbreviation, systemType',
-      equipaments: '++id, name, abreviation, uhc',
-      equipamentSets: '++id, name',
-      levels: '++id, name, height',
-      contributions: '++id',
-      downpipes: '++id, numeration, diameter, system',
-      memorials: '++id, name'
+      systems: 'id',
+      levels: 'id',
+      equipaments: 'id',
+      equipamentSets: 'id',
+      contributions: 'id',
+      downpipes: 'id',
+      memorials: 'id',
     });
+
+    this.systems.mapToClass(System);
+    this.levels.mapToClass(Level);
+    this.equipaments.mapToClass(Equipament);
+    this.equipamentSets.mapToClass(EquipamentSet);
+    this.contributions.mapToClass(Contribution);
+    this.downpipes.mapToClass(DownPipe);
+    this.memorials.mapToClass(Memorial);
   }
 }
 
 export const db = new AppDB();
-
-export type { AppDB };

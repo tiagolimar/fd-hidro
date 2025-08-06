@@ -1,5 +1,5 @@
-import type { AppDB } from '../db';
-import { Level } from '../models/Level';
+import type { AppDB } from '@/db/db';
+import { Level } from '@/models/Level';
 
 export async function seedLevels(db: AppDB) {
   const levels: Level[] = [

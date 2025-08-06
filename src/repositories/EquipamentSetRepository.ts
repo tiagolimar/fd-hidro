@@ -1,4 +1,4 @@
-import { db } from '@/db'
+import { db } from '@/db/db'
 import type { EquipamentSet } from '@/models/EquipamentSet'
 import { BaseRepository } from './BaseRepository'
 

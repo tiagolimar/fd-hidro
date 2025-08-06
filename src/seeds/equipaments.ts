@@ -1,5 +1,5 @@
-import type { AppDB } from '../db';
-import { Equipament } from '../models/Equipament';
+import type { AppDB } from '@/db/db';
+import { Equipament } from '@/models/Equipament';
 
 export async function seedEquipaments(db: AppDB) {
   const defaultFittings: Equipament[] = [

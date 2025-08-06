@@ -1,5 +1,5 @@
-import type { AppDB } from '../db';
-import { Contribution } from '../models/Contribution';
+import type { AppDB } from '@/db/db';
+import { Contribution } from '@/models/Contribution';
 
 export async function seedContributions(db: AppDB) {
   const levels = await db.levels.toArray();

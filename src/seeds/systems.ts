@@ -1,6 +1,6 @@
-import type { AppDB } from '../db';
-import { System } from '../models/System';
-import { SystemType } from '../models/enums/SystemType';
+import type { AppDB } from '@/db/db';
+import { System } from '@/models/System';
+import { SystemType } from '@/models/enums/SystemType';
 
 export async function seedSystems(db: AppDB) {
   const systems: System[] = [

@@ -1,5 +1,5 @@
-import type { AppDB } from '../db';
-import { Memorial } from '../models/Memorial';
+import type { AppDB } from '@/db/db';
+import { Memorial } from '@/models/Memorial';
 
 export async function seedMemorials(db: AppDB) {
   const downpipes = await db.downpipes.toArray();

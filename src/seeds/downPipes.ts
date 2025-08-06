@@ -1,5 +1,5 @@
-import type { AppDB } from '../db';
-import { DownPipe } from '../models/DownPipe';
+import type { AppDB } from '@/db/db';
+import { DownPipe } from '@/models/DownPipe';
 
 export async function seedDownPipes(db: AppDB) {
   const systems = await db.systems.toArray();

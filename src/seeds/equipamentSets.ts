@@ -1,5 +1,5 @@
-import type { AppDB } from '../db';
-import { EquipamentSet } from '../models/EquipamentSet';
+import type { AppDB } from '@/db/db';
+import { EquipamentSet } from '@/models/EquipamentSet';
 
 export async function seedEquipamentSets(db: AppDB) {
   const equipaments = await db.equipaments.toArray();

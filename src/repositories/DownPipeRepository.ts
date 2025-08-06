@@ -1,4 +1,4 @@
-import { db } from '@/db'
+import { db } from '@/db/db'
 import type { DownPipe } from '@/models/DownPipe'
 import { BaseRepository } from './BaseRepository'
 

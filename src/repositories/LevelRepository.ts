@@ -1,4 +1,4 @@
-import { db } from '@/db'
+import { db } from '@/db/db'
 import type { Level } from '@/models/Level'
 import { BaseRepository } from './BaseRepository'
 

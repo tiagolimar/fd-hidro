@@ -1,4 +1,4 @@
-import { db } from '@/db'
+import { db } from '@/db/db'
 import type { System } from '@/models/System'
 import { BaseRepository } from './BaseRepository'
 

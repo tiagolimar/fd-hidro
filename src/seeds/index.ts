@@ -1,4 +1,4 @@
-import type { AppDB } from '../db';
+import type { AppDB } from '@/db/db';
 import { seedSystems } from './systems';
 import { seedEquipaments } from './equipaments';
 import { seedEquipamentSets } from './equipamentSets';
