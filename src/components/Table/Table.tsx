@@ -1,12 +1,9 @@
 interface TableProps {
-    data: Record<string, unknown>[];
+    data: Record<string, string | number>[];
 }
 
 const Table = ({ data }: TableProps) => {
-    const columns = Object.keys(data[0] ?? {}).filter((key) => {
-        const value = data[0]?.[key];
-        return key !== "id" && (typeof value === "string" || typeof value === "number");
-    });
+    const columns = Object.keys(data[0] ?? {});
 
     return (
         <table className="table-auto w-full">
@@ -21,12 +18,16 @@ const Table = ({ data }: TableProps) => {
                 {data.map((row, index) => {
                     const rowId = row["id"];
                     const key = typeof rowId === "string" || typeof rowId === "number" ? rowId : index;
+                    const values = Object.values(row);
 
                     return (
                         <tr key={key}>
-                            {columns.map((column) => (
-                                <td key={column} className="border border-stone-300 p-2">
-                                    {row[column] as string | number}
+                            {values.map((value, valueIndex) => (
+                                <td
+                                    key={columns[valueIndex] ?? valueIndex}
+                                    className="border border-stone-300 p-2"
+                                >
+                                    {value}
                                 </td>
                             ))}
                         </tr>
