@@ -1,6 +1,7 @@
 import { SystemType } from './enums/SystemType';
+import type { IElement } from './InterfaceElement';
 
-export class System {
+export class System implements IElement {
   constructor(
     public id: number,
     public name: string,
@@ -15,10 +16,6 @@ export class System {
       Abreviação: this.systemAbreviation,
       Tipo: this.systemType,
     };
-  }
-
-  static tableColumns(): string[] {
-    return ['ID', 'Nome', 'Abreviação', 'Tipo'];
   }
 }
 

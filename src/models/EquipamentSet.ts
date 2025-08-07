@@ -1,6 +1,7 @@
 import { Equipament } from './Equipament';
+import type { IElement } from './InterfaceElement';
 
-export class EquipamentSet {
+export class EquipamentSet implements IElement {
   constructor(
     public id: number,
     public name: string,
@@ -22,10 +23,6 @@ export class EquipamentSet {
       Nome: this.name,
       'UHC Total': this.totaluhc,
     };
-  }
-
-  static tableColumns(): string[] {
-    return ['ID', 'Nome', 'UHC Total'];
   }
 }
 

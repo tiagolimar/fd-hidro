@@ -1,8 +1,9 @@
 import { Level } from './Level';
 import { Equipament } from './Equipament';
 import { EquipamentSet } from './EquipamentSet';
+import type { IElement } from './InterfaceElement';
 
-export class Contribution {
+export class Contribution implements IElement {
   constructor(
     public id: number,
     public level: Level,
@@ -22,10 +23,6 @@ export class Contribution {
       Equipamento: this.equipament.name,
       UHC: this.totaluhc,
     };
-  }
-
-  static tableColumns(): string[] {
-    return ['ID', 'Nível', 'Equipamento', 'UHC'];
   }
 }
 

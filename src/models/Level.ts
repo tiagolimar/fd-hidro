@@ -1,4 +1,6 @@
-export class Level {
+import type { IElement } from "./InterfaceElement";
+
+export class Level implements IElement {
   constructor(
     public id: number,
     public name: string,
@@ -11,10 +13,6 @@ export class Level {
       Nome: this.name,
       Altura: this.height,
     };
-  }
-
-  static tableColumns(): string[] {
-    return ['ID', 'Nome', 'Altura'];
   }
 }
 

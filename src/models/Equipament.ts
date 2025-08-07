@@ -1,4 +1,6 @@
-export class Equipament {
+import type { IElement } from "./InterfaceElement";
+
+export class Equipament implements IElement {
   constructor(
     public id: number,
     public name: string,
@@ -13,10 +15,6 @@ export class Equipament {
       Abreviação: this.abreviation,
       UHC: this.uhc,
     };
-  }
-
-  static tableColumns(): string[] {
-    return ['ID', 'Nome', 'Abreviação', 'UHC'];
   }
 }
 

@@ -1,7 +1,8 @@
 import { Contribution } from './Contribution';
 import type { System } from './System';
+import type { IElement } from './InterfaceElement';
 
-export class DownPipe {
+export class DownPipe implements IElement {
   constructor(
     public id: number,
     public numeration: string,
@@ -26,10 +27,6 @@ export class DownPipe {
       Sistema: this.system.name,
       'UHC Total': this.totaluhc,
     };
-  }
-
-  static tableColumns(): string[] {
-    return ['ID', 'Nome', 'Diâmetro', 'Sistema', 'UHC Total'];
   }
 }
 

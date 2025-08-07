@@ -1,6 +1,7 @@
 import { DownPipe } from './DownPipe';
+import type { IElement } from './InterfaceElement';
 
-export class Memorial {
+export class Memorial implements IElement {
   constructor(
     public id: number,
     public name: string,
@@ -12,10 +13,6 @@ export class Memorial {
       ID: this.id,
       Nome: this.name,
     };
-  }
-
-  static tableColumns(): string[] {
-    return ['ID', 'Nome'];
   }
 }
 

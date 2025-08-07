@@ -23,6 +23,6 @@ export async function seedContributions(db: AppDB) {
     new Contribution(11, l(6), e(10)),
     new Contribution(12, l(6), e(8)),
   ];
-
+  
   await db.contributions.bulkAdd(contributions);
 }
