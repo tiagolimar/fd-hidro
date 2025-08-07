@@ -19,7 +19,7 @@ export class EquipamentSet implements IElement {
 
   toTableRow(): Record<string, string | number> {
     return {
-      ID: this.id,
+      ID: this.id!,
       Nome: this.name,
       'UHC Total': this.totaluhc,
     };
