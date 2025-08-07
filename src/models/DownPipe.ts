@@ -17,5 +17,19 @@ export class DownPipe {
   get abreviation(): string {
     return `${this.system.systemAbreviation}${this.numeration}`;
   }
+
+  toTableRow(): Record<string, string | number> {
+    return {
+      ID: this.id,
+      Numeração: this.numeration,
+      Diâmetro: this.diameter,
+      Sistema: this.system.name,
+      'UHC Total': this.totaluhc,
+    };
+  }
+
+  static tableColumns(): string[] {
+    return ['ID', 'Numeração', 'Diâmetro', 'Sistema', 'UHC Total'];
+  }
 }
 

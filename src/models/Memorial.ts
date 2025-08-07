@@ -6,5 +6,16 @@ export class Memorial {
     public name: string,
     public downpipes: DownPipe[] = []
   ) {}
+
+  toTableRow(): Record<string, string | number> {
+    return {
+      ID: this.id,
+      Nome: this.name,
+    };
+  }
+
+  static tableColumns(): string[] {
+    return ['ID', 'Nome'];
+  }
 }
 
