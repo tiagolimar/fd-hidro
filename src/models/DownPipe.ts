@@ -14,8 +14,22 @@ export class DownPipe {
     return this.contributions.reduce((sum, c) => sum + c.totaluhc, 0);
   }
 
-  get abreviation(): string {
+  get name(): string {
     return `${this.system.systemAbreviation}${this.numeration}`;
+  }
+
+  toTableRow(): Record<string, string | number> {
+    return {
+      ID: this.id,
+      Nome: this.name,
+      Diâmetro: this.diameter,
+      Sistema: this.system.name,
+      'UHC Total': this.totaluhc,
+    };
+  }
+
+  static tableColumns(): string[] {
+    return ['ID', 'Nome', 'Diâmetro', 'Sistema', 'UHC Total'];
   }
 }
 

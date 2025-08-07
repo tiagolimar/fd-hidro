@@ -15,5 +15,17 @@ export class EquipamentSet {
       return sum + item.uhc;
     }, 0);
   }
+
+  toTableRow(): Record<string, string | number> {
+    return {
+      ID: this.id,
+      Nome: this.name,
+      'UHC Total': this.totaluhc,
+    };
+  }
+
+  static tableColumns(): string[] {
+    return ['ID', 'Nome', 'UHC Total'];
+  }
 }
 
