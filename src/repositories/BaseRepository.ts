@@ -11,8 +11,9 @@ export class BaseRepository<T> {
     return await this.table.get(id)
   }
 
-  async create(data: T): Promise<number> {
-    return await this.table.add(data)
+  async create(data: T): Promise<T> {
+    const id = await this.table.add(data)
+    return { ...data, id }
   }
 
   async update(id: number, changes: Partial<T>): Promise<number> {
