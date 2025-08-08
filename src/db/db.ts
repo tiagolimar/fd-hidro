@@ -19,13 +19,13 @@ export class AppDB extends Dexie {
   constructor() {
     super('fd-hidro');
     this.version(1).stores({
-      systems: 'id',
-      levels: 'id',
-      equipaments: 'id',
-      equipamentSets: 'id',
-      contributions: 'id',
-      downpipes: 'id',
-      memorials: 'id',
+      systems: '++id',
+      levels: '++id',
+      equipaments: '++id',
+      equipamentSets: '++id',
+      contributions: '++id',
+      downpipes: '++id',
+      memorials: '++id',
     });
 
     this.systems.mapToClass(System);

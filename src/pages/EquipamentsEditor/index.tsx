@@ -1,53 +1,109 @@
 import { useEffect, useState } from 'react';
 import { Toaster } from 'sonner';
+import { Dialog, DialogPanel, DialogTitle, Description } from '@headlessui/react';
 
 import { Equipament } from '@/models/Equipament';
 import EquipamentRepository from '@/repositories/EquipamentRepository';
 import Table from '@/components/Table/Table';
 import ButtonPrimary from '@/components/Table/ButtonPrimary';
-import { Dialog, DialogPanel, DialogTitle, Description } from '@headlessui/react';
 
 export default function EquipamentsEditor() {
-	const [equipaments, setEquipaments] = useState<Equipament[]>([]);
-	const [isOpen, setIsOpen] = useState(false);
-	const [newEquipament, setNewEquipament] = useState<Equipament>(new Equipament(0,'0','0',0));
-	
-	useEffect(() => {
-		EquipamentRepository.getAll().then(setEquipaments);
-	}, []);
-	
-	return (
-		<section className="container mx-auto pb-4">
-			<Toaster />
-			<Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50">
-				<div className="fixed inset-0 flex w-screen items-center justify-center p-4">
-				<DialogPanel className="max-w-lg space-y-4 border bg-white p-12">
-					<DialogTitle className="font-bold">Adicionar Peça</DialogTitle>
-					<Description>
-						<h2>Insira os dados da peça</h2>
-						<form onSubmit={(e) => e.preventDefault()}>
-							<label htmlFor="name">Nome</label>
-							<input type="text" id="name" name="name" value={newEquipament.name} onChange={(e) => setNewEquipament({ ...newEquipament, name: e.target.value })} />
-							<label htmlFor="abreviation">Abreviação</label>
-							<input type="text" id="abreviation" name="abreviation" value={newEquipament.abreviation} onChange={(e) => setNewEquipament({ ...newEquipament, abreviation: e.target.value })} />
-							<label htmlFor="uhc">UHC</label>
-							<input type="number" id="uhc" name="uhc" value={newEquipament.uhc} onChange={(e) => setNewEquipament({ ...newEquipament, uhc: Number(e.target.value) })} />
-						</form>
-					</Description>
-					<div className="flex gap-4">
-						<button onClick={() => setIsOpen(false)}>Cancelar</button>
-						<button onClick={() => EquipamentRepository.create(newEquipament)}>Adicionar</button>
-					</div>
-				</DialogPanel>
-				</div>
-			</Dialog>
-			<div className="menu flex justify-between items-center py-4">
-				<h1>Menu de Edição de Peças Hidráulicas</h1>
-				<ButtonPrimary onClick={() => setIsOpen(true)} />
-			</div>
-			<Table data={equipaments} />
-		</section>
-	);
+  const [equipaments, setEquipaments] = useState<Equipament[]>([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const [newEquipament, setNewEquipament] = useState<Equipament>(
+    new Equipament(0, '', '', 0)
+  );
+
+  useEffect(() => {
+    EquipamentRepository.getAll().then(setEquipaments);
+  }, []);
+
+  function handleChange<K extends keyof Equipament>(key: K, value: Equipament[K]) {
+    setNewEquipament(prev => new Equipament(
+      prev.id,
+      key === 'name' ? String(value) : prev.name,
+      key === 'abreviation' ? String(value) : prev.abreviation,
+      key === 'uhc' ? Number(value) : prev.uhc
+    ));
+  }
+
+  async function handleCreate() {
+    const created = await EquipamentRepository.create(newEquipament);
+    setEquipaments(prev => [...prev, created]);
+    setIsOpen(false);
+    setNewEquipament(new Equipament(0, '', '', 0));
+  }
+
+  return (
+    <section className="container mx-auto pb-4">
+      <Toaster />
+      <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50">
+        <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
+        <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
+          <DialogPanel className="max-w-lg w-full space-y-4 rounded border bg-white p-6">
+            <DialogTitle className="text-lg font-bold">Adicionar Peça</DialogTitle>
+            <Description>Insira os dados da peça</Description>
+
+            <form
+              className="flex flex-col gap-4"
+              onSubmit={(e) => { e.preventDefault(); void handleCreate(); }}
+            >
+              <div className="flex flex-col">
+                <label htmlFor="name" className="text-sm font-medium">Nome</label>
+                <input
+                  id="name"
+                  type="text"
+                  value={newEquipament.name}
+                  onChange={(e) => handleChange('name', e.target.value)}
+                  className="rounded border p-2"
+                  required
+                />
+              </div>
+
+              <div className="flex flex-col">
+                <label htmlFor="abreviation" className="text-sm font-medium">Abreviação</label>
+                <input
+                  id="abreviation"
+                  type="text"
+                  value={newEquipament.abreviation}
+                  onChange={(e) => handleChange('abreviation', e.target.value)}
+                  className="rounded border p-2"
+                  required
+                />
+              </div>
+
+              <div className="flex flex-col">
+                <label htmlFor="uhc" className="text-sm font-medium">UHC</label>
+                <input
+                  id="uhc"
+                  type="number"
+                  step="any"
+                  value={String(newEquipament.uhc)}
+                  onChange={(e) => handleChange('uhc', Number(e.target.value))}
+                  className="rounded border p-2"
+                  required
+                />
+              </div>
+
+              <div className="mt-2 flex gap-3">
+                <button type="button" onClick={() => setIsOpen(false)} className="px-4 py-2 rounded border">
+                  Cancelar
+                </button>
+                <button type="submit" className="px-4 py-2 rounded bg-blue-600 text-white">
+                  Adicionar
+                </button>
+              </div>
+            </form>
+          </DialogPanel>
+        </div>
+      </Dialog>
+
+      <div className="menu flex justify-between items-center py-4">
+        <h1 className="font-semibold">Menu de Edição de Peças Hidráulicas</h1>
+        <ButtonPrimary onClick={() => setIsOpen(true)} />
+      </div>
+
+      <Table data={equipaments} />
+    </section>
+  );
 }
-
-
