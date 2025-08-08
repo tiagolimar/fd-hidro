@@ -1,9 +1,18 @@
+import type { IElement } from './InterfaceElement';
 import { Level } from './Level';
 import { Equipament } from './Equipament';
 import { EquipamentSet } from './EquipamentSet';
-import type { IElement } from './InterfaceElement';
 
-export class Contribution implements IElement {
+export class Contribution {
+  constructor(
+    public id: number,
+    public levelId: number,
+    public equipamentId?: number,
+    public equipamentSetId?: number
+  ) {}
+}
+
+export class HydratedContribution implements IElement {
   constructor(
     public id: number,
     public level: Level,
@@ -25,4 +34,3 @@ export class Contribution implements IElement {
     };
   }
 }
-

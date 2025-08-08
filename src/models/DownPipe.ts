@@ -1,4 +1,4 @@
-import { Contribution } from './Contribution';
+import type { HydratedContribution } from './Contribution';
 import type { System } from './System';
 import type { IElement } from './InterfaceElement';
 
@@ -8,7 +8,7 @@ export class DownPipe implements IElement {
     public numeration: string,
     public diameter: number,
     public system: System,
-    public contributions: Contribution[] = []
+    public contributions: HydratedContribution[] = []
   ) {}
 
   get totaluhc(): number {
