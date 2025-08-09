@@ -1,5 +1,6 @@
 import type { AppDB } from '@/db/db';
 import { Level } from '@/models/Level';
+import { fromLevel } from '@/dto/level';
 
 export async function seedLevels(db: AppDB) {
   const levels: Level[] = [
@@ -49,5 +50,5 @@ export async function seedLevels(db: AppDB) {
     new Level(24, '2º PISO DUPLEX', 44.20),
     new Level(25, 'COBERTA', 47.20)
   ];
-  await db.levels.bulkAdd(levels);
+  await db.levels.bulkAdd(levels.map(fromLevel));
 }

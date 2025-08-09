@@ -1,5 +1,6 @@
 import type { AppDB } from '@/db/db';
 import { Contribution } from '@/models/Contribution';
+import { fromContribution } from '@/dto/contribution';
 
 export async function seedContributions(db: AppDB) {
   const contributions: Contribution[] = [
@@ -17,5 +18,5 @@ export async function seedContributions(db: AppDB) {
     new Contribution(12, 6, 8),
   ];
 
-  await db.contributions.bulkAdd(contributions);
+  await db.contributions.bulkAdd(contributions.map(fromContribution));
 }
