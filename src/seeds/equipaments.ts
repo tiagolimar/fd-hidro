@@ -1,5 +1,6 @@
 import type { AppDB } from '@/db/db';
 import { Equipament } from '@/models/Equipament';
+import { fromEquipament } from '@/dto/equipament';
 
 export async function seedEquipaments(db: AppDB) {
   const defaultFittings: Equipament[] = [
@@ -14,5 +15,5 @@ export async function seedEquipaments(db: AppDB) {
     new Equipament(9, 'Máquina de Lavar Roupa', 'MLR', 3),
     new Equipament(10, 'Pia', 'PIA', 3),
   ];
-  await db.equipaments.bulkAdd(defaultFittings);
+  await db.equipaments.bulkAdd(defaultFittings.map(fromEquipament));
 }

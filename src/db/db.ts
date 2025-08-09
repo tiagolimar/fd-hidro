@@ -1,20 +1,20 @@
 import Dexie, { type Table } from 'dexie';
-import { System } from '@/models/System';
-import { Level } from '@/models/Level';
-import { Equipament } from '@/models/Equipament';
-import { EquipamentSet } from '@/models/EquipamentSet';
-import { Contribution } from '@/models/Contribution';
-import { DownPipe } from '@/models/DownPipe';
-import { Memorial } from '@/models/Memorial';
+import type { SystemDTO } from '@/dto/system';
+import type { LevelDTO } from '@/dto/level';
+import type { EquipamentDTO } from '@/dto/equipament';
+import type { EquipamentSetDTO } from '@/dto/equipamentSet';
+import type { ContributionDTO } from '@/dto/contribution';
+import type { DownPipeDTO } from '@/dto/downPipe';
+import type { MemorialDTO } from '@/dto/memorial';
 
 export class AppDB extends Dexie {
-  systems!: Table<System, number>;
-  levels!: Table<Level, number>;
-  equipaments!: Table<Equipament, number>;
-  equipamentSets!: Table<EquipamentSet, number>;
-  contributions!: Table<Contribution, number>;
-  downpipes!: Table<DownPipe, number>;
-  memorials!: Table<Memorial, number>;
+  systems!: Table<SystemDTO, number>;
+  levels!: Table<LevelDTO, number>;
+  equipaments!: Table<EquipamentDTO, number>;
+  equipamentSets!: Table<EquipamentSetDTO, number>;
+  contributions!: Table<ContributionDTO, number>;
+  downpipes!: Table<DownPipeDTO, number>;
+  memorials!: Table<MemorialDTO, number>;
 
   constructor() {
     super('fd-hidro');
@@ -28,13 +28,6 @@ export class AppDB extends Dexie {
       memorials: '++id',
     });
 
-    this.systems.mapToClass(System);
-    this.levels.mapToClass(Level);
-    this.equipaments.mapToClass(Equipament);
-    this.equipamentSets.mapToClass(EquipamentSet);
-    this.contributions.mapToClass(Contribution);
-    this.downpipes.mapToClass(DownPipe);
-    this.memorials.mapToClass(Memorial);
   }
 }
 

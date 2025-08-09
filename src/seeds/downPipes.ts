@@ -1,10 +1,13 @@
 import type { AppDB } from '@/db/db';
 import { DownPipe } from '@/models/DownPipe';
 import { hydrateContribution } from '@/utils/hydrateContribution';
+import { toContribution } from '@/dto/contribution';
+import { toSystem } from '@/dto/system';
+import { fromDownPipe as fromDownPipeDTO } from '@/dto/downPipe';
 
 export async function seedDownPipes(db: AppDB) {
-  const systems = await db.systems.toArray();
-  const contributions = await db.contributions.toArray();
+  const systems = (await db.systems.toArray()).map(toSystem);
+  const contributions = (await db.contributions.toArray()).map(toContribution);
   const s = (id: number) => systems.find(sys => sys.id === id)!;
   const c = async (id: number) =>
     hydrateContribution(contributions.find(con => con.id === id)!);
@@ -76,5 +79,5 @@ export async function seedDownPipes(db: AppDB) {
     ]),
   ];
 
-  await db.downpipes.bulkAdd(downpipes);
+  await db.downpipes.bulkAdd(downpipes.map(fromDownPipeDTO));
 }

@@ -1,26 +1,33 @@
-import type { Table } from 'dexie'
+import type { Table } from 'dexie';
 
-export class BaseRepository<T> {
-  constructor(private table: Table<T, number>) {}
+export class BaseRepository<T, D> {
+  constructor(
+    private table: Table<D, number>,
+    private toModel: (dto: D) => T,
+    private fromModel: (model: T) => D,
+  ) {}
 
   async getAll(): Promise<T[]> {
-    return await this.table.toArray()
+    const records = await this.table.toArray();
+    return records.map(this.toModel);
   }
 
   async getById(id: number): Promise<T | undefined> {
-    return await this.table.get(id)
+    const record = await this.table.get(id);
+    return record ? this.toModel(record) : undefined;
   }
 
   async create(data: T): Promise<T> {
-    const id = await this.table.add(data)
-    return { ...data, id }
+    const dto = this.fromModel(data);
+    const id = await this.table.add(dto);
+    return this.toModel({ ...dto, id } as D);
   }
 
   async update(id: number, changes: Partial<T>): Promise<number> {
-    return await this.table.update(id, changes)
+    return await (this.table as any).update(id, changes);
   }
 
   async delete(id: number): Promise<void> {
-    await this.table.delete(id)
+    await this.table.delete(id);
   }
 }
