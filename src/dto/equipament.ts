@@ -8,7 +8,7 @@ export interface EquipamentDTO {
 }
 
 export function toEquipament(dto: EquipamentDTO): Equipament {
-  return new Equipament(dto.id, dto.name, dto.abreviation, dto.uhc);
+  return new Equipament(dto.name, dto.abreviation, dto.uhc, dto.id);
 }
 
 export function fromEquipament(model: Equipament): EquipamentDTO {

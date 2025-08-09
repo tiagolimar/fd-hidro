@@ -20,7 +20,7 @@ class ContributionRepository {
   async create(data: Contribution): Promise<Contribution> {
     const dto: ContributionDTO = fromContribution(data);
     const id = await this.table.add(dto);
-    return new Contribution(id, data.levelId, data.equipamentId, data.equipamentSetId);
+    return new Contribution(data.levelId, data.equipamentId, data.equipamentSetId, id);
   }
 
   async update(id: number, changes: Partial<Contribution>): Promise<number> {

@@ -9,7 +9,7 @@ export interface SystemDTO {
 }
 
 export function toSystem(dto: SystemDTO): System {
-  return new System(dto.id ?? 0, dto.name, dto.systemAbreviation, dto.systemType);
+  return new System(dto.name, dto.systemAbreviation, dto.systemType, dto.id);
 }
 
 export function fromSystem(model: System): SystemDTO {

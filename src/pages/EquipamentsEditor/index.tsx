@@ -11,7 +11,7 @@ export default function EquipamentsEditor() {
   const [equipaments, setEquipaments] = useState<Equipament[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [newEquipament, setNewEquipament] = useState<Equipament>(
-    new Equipament(0, '', '', 0)
+    new Equipament('', '', 0)
   );
 
   useEffect(() => {
@@ -20,10 +20,10 @@ export default function EquipamentsEditor() {
 
   function handleChange<K extends keyof Equipament>(key: K, value: Equipament[K]) {
     setNewEquipament(prev => new Equipament(
-      prev.id,
       key === 'name' ? String(value) : prev.name,
       key === 'abreviation' ? String(value) : prev.abreviation,
-      key === 'uhc' ? Number(value) : prev.uhc
+      key === 'uhc' ? Number(value) : prev.uhc,
+      prev.id
     ));
   }
 
@@ -31,7 +31,7 @@ export default function EquipamentsEditor() {
     const created = await EquipamentRepository.create(newEquipament);
     setEquipaments(prev => [...prev, created]);
     setIsOpen(false);
-    setNewEquipament(new Equipament(0, '', '', 0));
+    setNewEquipament(new Equipament('', '', 0));
   }
 
   return (

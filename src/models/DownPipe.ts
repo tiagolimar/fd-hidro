@@ -4,11 +4,11 @@ import type { IElement } from './InterfaceElement';
 
 export class DownPipe implements IElement {
   constructor(
-    public id: number,
     public numeration: string,
     public diameter: number,
     public system: System,
-    public contributions: HydratedContribution[] = []
+    public contributions: HydratedContribution[] = [],
+    public id?: number
   ) {}
 
   get totaluhc(): number {
@@ -21,7 +21,7 @@ export class DownPipe implements IElement {
 
   toTableRow(): Record<string, string | number> {
     return {
-      ID: this.id,
+      ID: this.id ?? '',
       Nome: this.name,
       Diâmetro: this.diameter,
       Sistema: this.system.name,
