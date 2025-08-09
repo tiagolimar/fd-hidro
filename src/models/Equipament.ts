@@ -2,10 +2,10 @@ import type { IElement } from "./InterfaceElement";
 
 export class Equipament implements IElement {
   constructor(
-    public id: number | undefined,
     public name: string,
     public abreviation: string,
-    public uhc: number
+    public uhc: number,
+    public id?: number
   ) {}
 
   toTableRow(): Record<string, string | number> {

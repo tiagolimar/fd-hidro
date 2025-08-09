@@ -19,10 +19,10 @@ import {
 
 export function toContribution(dto: ContributionDTO): Contribution {
   return new Contribution(
-    dto.id ?? 0,
     dto.levelId,
     dto.equipamentId,
     dto.equipamentSetId,
+    dto.id,
   );
 }
 
@@ -49,7 +49,7 @@ export function toHydratedContribution(
     'equipaments' in dto.equipament
       ? toEquipamentSet(dto.equipament as EquipamentSetDTO)
       : toEquipament(dto.equipament as EquipamentDTO);
-  return new HydratedContribution(dto.id, level, equipament);
+  return new HydratedContribution(level, equipament, dto.id);
 }
 
 export function fromHydratedContribution(
@@ -60,7 +60,7 @@ export function fromHydratedContribution(
       ? fromEquipamentSet(model.equipament)
       : fromEquipament(model.equipament as Equipament);
   return {
-    id: model.id,
+    id: model.id!,
     level: fromLevel(model.level),
     equipament,
   };

@@ -17,7 +17,7 @@ export interface DownPipeDTO {
 export function toDownPipe(dto: DownPipeDTO): DownPipe {
   const system = toSystem(dto.system);
   const contributions = dto.contributions.map(toHydratedContribution);
-  return new DownPipe(dto.id ?? 0, dto.numeration, dto.diameter, system, contributions);
+  return new DownPipe(dto.numeration, dto.diameter, system, contributions, dto.id);
 }
 
 export function fromDownPipe(model: DownPipe): DownPipeDTO {

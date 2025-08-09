@@ -5,10 +5,10 @@ import { fromSystem } from '@/dto/system';
 
 export async function seedSystems(db: AppDB) {
   const systems: System[] = [
-    new System(1, 'Esgoto', 'TQ', SystemType.Sanitario),
-    new System(2, 'Sabão', 'TS', SystemType.Sanitario),
-    new System(3, 'Gordura', 'TG', SystemType.Sanitario),
-    new System(4, 'Drenagem', 'DR', SystemType.Sanitario),
+    new System('Esgoto', 'TQ', SystemType.Sanitario, 1),
+    new System('Sabão', 'TS', SystemType.Sanitario, 2),
+    new System('Gordura', 'TG', SystemType.Sanitario, 3),
+    new System('Drenagem', 'DR', SystemType.Sanitario, 4),
   ];
   await db.systems.bulkAdd(systems.map(fromSystem));
 }

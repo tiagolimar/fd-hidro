@@ -14,7 +14,7 @@ export function toEquipamentSet(dto: EquipamentSetDTO): EquipamentSet {
       ? toEquipamentSet(item as EquipamentSetDTO)
       : toEquipament(item as EquipamentDTO)
   );
-  return new EquipamentSet(dto.id ?? 0, dto.name, equipaments);
+  return new EquipamentSet(dto.name, equipaments, dto.id);
 }
 
 export function fromEquipamentSet(model: EquipamentSet): EquipamentSetDTO {

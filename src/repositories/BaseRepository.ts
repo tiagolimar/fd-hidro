@@ -1,4 +1,4 @@
-import type { Table } from 'dexie';
+import type { Table, UpdateSpec } from 'dexie';
 
 export class BaseRepository<T, D> {
   constructor(
@@ -24,7 +24,8 @@ export class BaseRepository<T, D> {
   }
 
   async update(id: number, changes: Partial<T>): Promise<number> {
-    return await (this.table as any).update(id, changes);
+    const dtoChanges = changes as unknown as UpdateSpec<D>;
+    return await this.table.update(id, dtoChanges);
   }
 
   async delete(id: number): Promise<void> {
