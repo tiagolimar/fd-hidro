@@ -4,6 +4,7 @@ import { Level } from "@/models/Level";
 import LevelRepository from "@/repositories/LevelRepository";
 import Table from "@/components/Table/Table";
 import EntityFormDialog, { type FieldConfig } from "@/components/EntityFormDialog/EntityFormDialog";
+import SectionMain from "@/components/SectionMain/SectionMain";
 
 export default function LevelsEditor() {
   const [levels, setLevels] = useState<Level[]>([]);
@@ -24,7 +25,7 @@ export default function LevelsEditor() {
   }
 
   return (
-    <section className="container mx-auto">
+    <SectionMain>
       <Toaster />
 
       <div className="menu flex justify-between items-center py-4">
@@ -33,6 +34,6 @@ export default function LevelsEditor() {
       </div>
 
       <Table data={levels} />
-    </section>
+    </SectionMain>
   );
 }

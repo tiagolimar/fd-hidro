@@ -5,6 +5,7 @@ import { Equipament } from '@/models/Equipament';
 import EquipamentRepository from '@/repositories/EquipamentRepository';
 import Table from '@/components/Table/Table';
 import EntityFormDialog, { type FieldConfig } from '@/components/EntityFormDialog/EntityFormDialog';
+import SectionMain from '@/components/SectionMain/SectionMain';
 
 export default function EquipamentsEditor() {
   const [equipaments, setEquipaments] = useState<Equipament[]>([]);
@@ -30,7 +31,7 @@ export default function EquipamentsEditor() {
   }
 
   return (
-    <section className="container mx-auto pb-4">
+    <SectionMain>
       <Toaster />
 
       <div className="menu flex justify-between items-center py-4">
@@ -39,6 +40,6 @@ export default function EquipamentsEditor() {
       </div>
 
       <Table data={equipaments} />
-    </section>
+    </SectionMain>
   );
 }
