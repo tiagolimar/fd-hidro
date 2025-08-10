@@ -15,7 +15,7 @@ export default function EquipamentSetsEditor() {
 	return (
 		<SectionMain>
 			<Toaster />
-			<h1 className="my-4">Menu de Edição de Conjunto de Peças</h1>
+			<h1 className="my-4">Conjunto de Peças</h1>
 			<Table data={equipamentSets} />
 		</SectionMain>
 	)

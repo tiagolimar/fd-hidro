@@ -27,12 +27,10 @@ export default function LevelsEditor() {
   return (
     <SectionMain>
       <Toaster />
-
       <div className="menu flex justify-between items-center py-4">
         <h1 className="font-semibold">Níveis</h1>
         <EntityFormDialog title="Adicionar Nível" fields={fields} onSubmit={handleCreate} />
       </div>
-
       <Table data={levels} />
     </SectionMain>
   );

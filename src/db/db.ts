@@ -17,7 +17,7 @@ export class AppDB extends Dexie {
   memorials!: Table<MemorialDTO, number>;
 
   constructor() {
-    super('fd-hidro');
+    super('fd-mep-memorial');
     this.version(1).stores({
       systems: '++id',
       levels: '++id',

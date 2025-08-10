@@ -17,7 +17,7 @@ export default function EquipamentsEditor() {
   const fields: FieldConfig[] = [
     { name: 'name', label: 'Nome', type: 'text' },
     { name: 'abreviation', label: 'Abreviação', type: 'text' },
-    { name: 'uhc', label: 'UHC', type: 'number', step: 'any' },
+    { name: 'uhc', label: 'UHC', type: 'number', step: '1' },
   ];
 
   async function handleCreate(data: Record<string, string>) {
@@ -33,12 +33,10 @@ export default function EquipamentsEditor() {
   return (
     <SectionMain>
       <Toaster />
-
       <div className="menu flex justify-between items-center py-4">
-        <h1 className="font-semibold">Menu de Edição de Peças Hidráulicas</h1>
+        <h1 className="font-semibold">Peças</h1>
         <EntityFormDialog title="Adicionar Peça" fields={fields} onSubmit={handleCreate} />
       </div>
-
       <Table data={equipaments} />
     </SectionMain>
   );

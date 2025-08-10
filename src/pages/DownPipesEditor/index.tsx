@@ -15,7 +15,7 @@ export default function DownPipesEditor() {
 	return (
 		<SectionMain>
 			<Toaster />
-			<h1 className="my-4">Menu de Edição de Prumadas</h1>
+			<h1 className="my-4">Prumadas</h1>
 			<Table data={downpipes} />
 		</SectionMain>
 	)
