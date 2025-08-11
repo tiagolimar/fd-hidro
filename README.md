@@ -17,6 +17,12 @@ Ela foi desenvolvida usando **React**, **TypeScript** e **TailwindCSS**, com per
 
 ---
 
+## 🧹 Convenção de Código
+
+O projeto utiliza indentação de **4 espaços**. Execute `eslint --fix` antes de enviar contribuições para garantir que os arquivos estejam no padrão. Recomendamos a extensão [EditorConfig for VS Code](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig) ou equivalente para salvar automaticamente com 4 espaços.
+
+---
+
 ## 📐 Modelagem dos Componentes
 
 A estrutura de dados foi modelada para representar com fidelidade os elementos do dimensionamento de prumadas.

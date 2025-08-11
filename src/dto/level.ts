@@ -7,13 +7,13 @@ export interface LevelDTO {
 }
 
 export function toLevel(dto: LevelDTO): Level {
-  return new Level(dto.name, dto.height, dto.id);
+    return new Level(dto.name, dto.height, dto.id);
 }
 
 export function fromLevel(model: Level): LevelDTO {
-  return {
-    id: model.id,
-    name: model.name,
-    height: model.height,
-  };
+    return {
+        id: model.id,
+        name: model.name,
+        height: model.height,
+    };
 }
