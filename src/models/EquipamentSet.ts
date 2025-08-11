@@ -1,5 +1,5 @@
 import { Equipament } from './Equipament';
-import type { IElement } from './InterfaceElement';
+import type { IElement, TableCell } from './InterfaceElement';
 
 export class EquipamentSet implements IElement {
   constructor(
@@ -17,11 +17,11 @@ export class EquipamentSet implements IElement {
     }, 0);
   }
 
-  toTableRow(): Record<string, string | number> {
+  toTableRow(): Record<string, TableCell> {
     return {
-      ID: this.id ?? '',
-      Nome: this.name,
-      'UHC Total': this.totaluhc,
+      ID: { value: this.id ?? '', align: 'center' },
+      Nome: { value: this.name },
+      'UHC Total': { value: this.totaluhc, align: 'center' },
     };
   }
 }

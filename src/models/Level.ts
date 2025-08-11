@@ -1,4 +1,4 @@
-import type { IElement } from "./InterfaceElement";
+import type { IElement, TableCell } from "./InterfaceElement";
 
 export class Level implements IElement {
   constructor(
@@ -7,11 +7,11 @@ export class Level implements IElement {
     public id?: number
   ) {}
 
-  toTableRow(): Record<string, string | number> {
+  toTableRow(): Record<string, TableCell> {
     return {
-      ID: this.id ?? '',
-      Nome: this.name,
-      Altura: this.height,
+      ID: { value: this.id ?? '', align: 'center' },
+      Nome: { value: this.name },
+      Altura: { value: this.height, align: 'center' },
     };
   }
 }

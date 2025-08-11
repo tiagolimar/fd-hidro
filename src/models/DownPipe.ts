@@ -1,6 +1,6 @@
 import type { HydratedContribution } from './Contribution';
 import type { System } from './System';
-import type { IElement } from './InterfaceElement';
+import type { IElement, TableCell } from './InterfaceElement';
 
 export class DownPipe implements IElement {
   constructor(
@@ -19,13 +19,13 @@ export class DownPipe implements IElement {
     return `${this.system.systemAbreviation}${this.numeration}`;
   }
 
-  toTableRow(): Record<string, string | number> {
+  toTableRow(): Record<string, TableCell> {
     return {
-      ID: this.id ?? '',
-      Nome: this.name,
-      Diâmetro: this.diameter,
-      Sistema: this.system.name,
-      'UHC Total': this.totaluhc,
+      ID: { value: this.id ?? '', align: 'center' },
+      Nome: { value: this.name },
+      Diâmetro: { value: this.diameter, align: 'center' },
+      Sistema: { value: this.system.name },
+      'UHC Total': { value: this.totaluhc, align: 'center' },
     };
   }
 }

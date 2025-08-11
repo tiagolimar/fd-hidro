@@ -1,4 +1,4 @@
-import type { IElement } from './InterfaceElement';
+import type { IElement, TableCell } from './InterfaceElement';
 import { Level } from './Level';
 import { Equipament } from './Equipament';
 import { EquipamentSet } from './EquipamentSet';
@@ -25,12 +25,12 @@ export class HydratedContribution implements IElement {
       : this.equipament.uhc;
   }
 
-  toTableRow(): Record<string, string | number> {
+  toTableRow(): Record<string, TableCell> {
     return {
-      ID: this.id ?? '',
-      Nível: this.level.name,
-      Equipamento: this.equipament.name,
-      UHC: this.totaluhc,
+      ID: { value: this.id ?? '', align: 'center' },
+      Nível: { value: this.level.name },
+      Equipamento: { value: this.equipament.name },
+      UHC: { value: this.totaluhc, align: 'center' },
     };
   }
 }
