@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Toaster } from 'sonner';
+import { Toaster, toast } from 'sonner';
 
 import { Equipament } from '@/models/Equipament';
 import EquipamentRepository from '@/repositories/EquipamentRepository';
 import Table from '@/components/Table/Table';
 import EntityFormDialog, { type FieldConfig } from '@/components/EntityFormDialog/EntityFormDialog';
 import SectionMain from '@/components/SectionMain/SectionMain';
+import { ENTITY_ADDED_SUCCESS } from '@/constants/messages';
 
 export default function EquipamentsEditor() {
   const [equipaments, setEquipaments] = useState<Equipament[]>([]);
@@ -28,6 +29,7 @@ export default function EquipamentsEditor() {
     );
     const created = await EquipamentRepository.create(equip);
     setEquipaments(prev => [...prev, created]);
+    toast.success(ENTITY_ADDED_SUCCESS);
   }
 
   return (
