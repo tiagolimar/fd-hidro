@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { Toaster } from "sonner";
+import { Toaster, toast } from "sonner";
 import { Level } from "@/models/Level";
 import LevelRepository from "@/repositories/LevelRepository";
 import Table from "@/components/Table/Table";
 import EntityFormDialog, { type FieldConfig } from "@/components/EntityFormDialog/EntityFormDialog";
 import SectionMain from "@/components/SectionMain/SectionMain";
+import { ENTITY_ADDED_SUCCESS } from "@/constants/messages";
 
 export default function LevelsEditor() {
   const [levels, setLevels] = useState<Level[]>([]);
@@ -22,6 +23,7 @@ export default function LevelsEditor() {
     const level = new Level(data.name, Number(data.height));
     const created = await LevelRepository.create(level);
     setLevels(prev => [...prev, created]);
+    toast.success(ENTITY_ADDED_SUCCESS);
   }
 
   return (
