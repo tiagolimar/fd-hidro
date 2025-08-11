@@ -4,9 +4,9 @@ import { BaseRepository } from './BaseRepository'
 import { toSystem, fromSystem, type SystemDTO } from '@/dto/system'
 
 class SystemRepository extends BaseRepository<System, SystemDTO> {
-  constructor() {
-    super(db.systems, toSystem, fromSystem)
-  }
+    constructor() {
+        super(db.systems, toSystem, fromSystem)
+    }
 }
 
 export default new SystemRepository()

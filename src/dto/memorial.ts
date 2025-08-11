@@ -8,14 +8,14 @@ export interface MemorialDTO {
 }
 
 export function toMemorial(dto: MemorialDTO): Memorial {
-  const downpipes = dto.downpipes.map(toDownPipe);
-  return new Memorial(dto.name, downpipes, dto.id);
+    const downpipes = dto.downpipes.map(toDownPipe);
+    return new Memorial(dto.name, downpipes, dto.id);
 }
 
 export function fromMemorial(model: Memorial): MemorialDTO {
-  return {
-    id: model.id,
-    name: model.name,
-    downpipes: model.downpipes.map(fromDownPipe),
-  };
+    return {
+        id: model.id,
+        name: model.name,
+        downpipes: model.downpipes.map(fromDownPipe),
+    };
 }

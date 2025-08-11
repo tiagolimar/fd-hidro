@@ -9,19 +9,19 @@ export interface EquipamentSetDTO {
 }
 
 export function toEquipamentSet(dto: EquipamentSetDTO): EquipamentSet {
-  const equipaments = dto.equipaments.map(item =>
-    'equipaments' in item
-      ? toEquipamentSet(item as EquipamentSetDTO)
-      : toEquipament(item as EquipamentDTO)
-  );
-  return new EquipamentSet(dto.name, equipaments, dto.id);
+    const equipaments = dto.equipaments.map(item =>
+        'equipaments' in item
+            ? toEquipamentSet(item as EquipamentSetDTO)
+            : toEquipament(item as EquipamentDTO)
+    );
+    return new EquipamentSet(dto.name, equipaments, dto.id);
 }
 
 export function fromEquipamentSet(model: EquipamentSet): EquipamentSetDTO {
-  const equipaments = model.equipaments.map(item =>
-    item instanceof EquipamentSet
-      ? fromEquipamentSet(item)
-      : fromEquipament(item as Equipament)
-  );
-  return { id: model.id, name: model.name, equipaments };
+    const equipaments = model.equipaments.map(item =>
+        item instanceof EquipamentSet
+            ? fromEquipamentSet(item)
+            : fromEquipament(item as Equipament)
+    );
+    return { id: model.id, name: model.name, equipaments };
 }
