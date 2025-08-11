@@ -1,5 +1,5 @@
 import { SystemType } from './enums/SystemType';
-import type { IElement } from './InterfaceElement';
+import type { IElement, TableCell } from './InterfaceElement';
 
 export class System implements IElement {
   constructor(
@@ -9,12 +9,12 @@ export class System implements IElement {
     public id?: number
   ) {}
 
-  toTableRow(): Record<string, string | number> {
+  toTableRow(): Record<string, TableCell> {
     return {
-      ID: this.id ?? '',
-      Nome: this.name,
-      Abreviação: this.systemAbreviation,
-      Tipo: this.systemType,
+      ID: { value: this.id ?? '', align: 'center' },
+      Nome: { value: this.name },
+      Abreviação: { value: this.systemAbreviation },
+      Tipo: { value: this.systemType },
     };
   }
 }

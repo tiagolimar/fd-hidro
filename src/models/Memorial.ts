@@ -1,5 +1,5 @@
 import { DownPipe } from './DownPipe';
-import type { IElement } from './InterfaceElement';
+import type { IElement, TableCell } from './InterfaceElement';
 
 export class Memorial implements IElement {
   constructor(
@@ -8,10 +8,10 @@ export class Memorial implements IElement {
     public id?: number
   ) {}
 
-  toTableRow(): Record<string, string | number> {
+  toTableRow(): Record<string, TableCell> {
     return {
-      ID: this.id ?? '',
-      Nome: this.name,
+      ID: { value: this.id ?? '', align: 'center' },
+      Nome: { value: this.name },
     };
   }
 }

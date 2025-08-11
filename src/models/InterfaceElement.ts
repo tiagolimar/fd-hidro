@@ -1,3 +1,8 @@
+export interface TableCell {
+  value: string | number;
+  align?: 'left' | 'center' | 'right';
+}
+
 export interface IElement {
-    toTableRow(): Record<string, string | number>;
+  toTableRow(): Record<string, TableCell>;
 }

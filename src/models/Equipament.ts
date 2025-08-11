@@ -1,4 +1,4 @@
-import type { IElement } from "./InterfaceElement";
+import type { IElement, TableCell } from "./InterfaceElement";
 
 export class Equipament implements IElement {
   constructor(
@@ -8,12 +8,12 @@ export class Equipament implements IElement {
     public id?: number
   ) {}
 
-  toTableRow(): Record<string, string | number> {
+  toTableRow(): Record<string, TableCell> {
     return {
-      ID: this.id ?? '',
-      Nome: this.name,
-      Abreviação: this.abreviation,
-      UHC: this.uhc,
+      ID: { value: this.id ?? '', align: 'center' },
+      Nome: { value: this.name },
+      Abreviação: { value: this.abreviation },
+      UHC: { value: this.uhc, align: 'center' },
     };
   }
 }
