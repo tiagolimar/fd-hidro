@@ -4,17 +4,17 @@ import { BaseRepository } from './BaseRepository'
 import { toEquipament, fromEquipament, type EquipamentDTO } from '@/dto/equipament'
 
 class EquipamentRepository extends BaseRepository<Equipament, EquipamentDTO> {
-  constructor() {
-    super(db.equipaments, toEquipament, fromEquipament)
-  }
+    constructor() {
+        super(db.equipaments, toEquipament, fromEquipament)
+    }
 
-  update(id: number, changes: Partial<Equipament>) {
-    return super.update(id, changes)
-  }
+    update(id: number, changes: Partial<Equipament>) {
+        return super.update(id, changes)
+    }
 
-  delete(id: number) {
-    return super.delete(id)
-  }
+    delete(id: number) {
+        return super.delete(id)
+    }
 }
 
 export default new EquipamentRepository()
