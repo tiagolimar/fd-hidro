@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Dialog, DialogPanel, DialogTitle, Description } from '@headlessui/react';
 
 import ButtonPrimary from '@/components/Table/ButtonPrimary';
@@ -14,15 +14,42 @@ interface EntityFormDialogProps {
   fields: FieldConfig[];
   onSubmit: (data: Record<string, string>) => Promise<void> | void;
   title: string;
+  initialData?: Record<string, string>;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  hideTrigger?: boolean;
+  submitLabel?: string;
 }
 
-export default function EntityFormDialog({ fields, onSubmit, title }: EntityFormDialogProps) {
-  const [isOpen, setIsOpen] = useState(false);
-  const initialData = fields.reduce<Record<string, string>>((acc, field) => {
-    acc[field.name] = '';
-    return acc;
-  }, {});
-  const [data, setData] = useState<Record<string, string>>(initialData);
+export default function EntityFormDialog({
+  fields,
+  onSubmit,
+  title,
+  initialData,
+  open,
+  onOpenChange,
+  hideTrigger,
+  submitLabel = 'Adicionar',
+}: EntityFormDialogProps) {
+  const controlled = open !== undefined && onOpenChange !== undefined;
+  const [internalOpen, setInternalOpen] = useState(false);
+  const isOpen = controlled ? open : internalOpen;
+  const setIsOpen = controlled ? onOpenChange! : setInternalOpen;
+
+  const emptyData = useMemo(
+    () =>
+      fields.reduce<Record<string, string>>((acc, field) => {
+        acc[field.name] = '';
+        return acc;
+      }, {}),
+    [fields]
+  );
+
+  const [data, setData] = useState<Record<string, string>>(initialData ?? emptyData);
+
+  useEffect(() => {
+    setData(initialData ?? emptyData);
+  }, [initialData, emptyData]);
 
   function handleChange(name: string, value: string) {
     setData(prev => ({ ...prev, [name]: value }));
@@ -30,13 +57,13 @@ export default function EntityFormDialog({ fields, onSubmit, title }: EntityForm
 
   async function handleSubmit() {
     await onSubmit(data);
-    setData(initialData);
+    setData(emptyData);
     setIsOpen(false);
   }
 
   return (
     <>
-      <ButtonPrimary onClick={() => setIsOpen(true)} />
+      {!hideTrigger && <ButtonPrimary onClick={() => setIsOpen(true)} />}
       <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50">
         <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
         <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
@@ -68,7 +95,7 @@ export default function EntityFormDialog({ fields, onSubmit, title }: EntityForm
                   Cancelar
                 </button>
                 <button type="submit" className="px-4 py-2 rounded bg-blue-600 text-white">
-                  Adicionar
+                  {submitLabel}
                 </button>
               </div>
             </form>
@@ -78,4 +105,3 @@ export default function EntityFormDialog({ fields, onSubmit, title }: EntityForm
     </>
   );
 }
-
