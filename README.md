@@ -79,3 +79,13 @@ classDiagram
         +Equipament|EquipamentSet equipament
         +totaluhc()
     }
+
+```
+
+## 🧪 Testes
+
+Execute os testes unitários com o comando:
+
+```bash
+npm test
+```
