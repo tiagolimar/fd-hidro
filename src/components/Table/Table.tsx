@@ -7,6 +7,7 @@ interface TableProps {
 }
 
 const Table = ({ data, onEdit, onDelete }: TableProps) => {
+
     const dataToRender = data.map((item) => item.toTableRow());
     const columns = Object.keys(dataToRender[0] ?? {});
 
@@ -15,6 +16,7 @@ const Table = ({ data, onEdit, onDelete }: TableProps) => {
             <thead className="bg-stone-200">
                 <tr>
                     {columns.map((column) => (
+
                         <th key={column} className="border border-stone-300 p-2">
                             {column}
                         </th>
@@ -32,6 +34,7 @@ const Table = ({ data, onEdit, onDelete }: TableProps) => {
                             ? rowId
                             : index;
                     const idNumber = typeof rowId === "number" ? rowId : Number(rowId);
+
 
                     return (
                         <tr className="even:bg-stone-100" key={key}>
@@ -76,5 +79,5 @@ const Table = ({ data, onEdit, onDelete }: TableProps) => {
         </table>
     );
 };
-
 export default Table;
+

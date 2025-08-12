@@ -8,7 +8,7 @@ import { runSeeds } from '@/seeds'
 runSeeds(db)
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <RoutesApp />
-  </StrictMode>,
+    <StrictMode>
+        <RoutesApp />
+    </StrictMode>,
 )

@@ -70,7 +70,6 @@ export default function EntityFormDialog({
                     <DialogPanel className="max-w-lg w-full space-y-4 rounded border bg-white p-6">
                         <DialogTitle className="text-lg font-bold">{title}</DialogTitle>
                         <Description>Insira os dados</Description>
-
                         <form
                             className="flex flex-col gap-4"
                             onSubmit={(e) => { e.preventDefault(); void handleSubmit(); }}

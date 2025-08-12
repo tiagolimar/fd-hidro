@@ -15,6 +15,7 @@ export default function EquipamentsEditor() {
     const [isEditOpen, setIsEditOpen] = useState(false);
     const [deleteId, setDeleteId] = useState<number | null>(null);
 
+
     useEffect(() => {
         EquipamentRepository.getAll().then(setEquipaments);
     }, []);

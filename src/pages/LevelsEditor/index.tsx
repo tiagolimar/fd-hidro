@@ -14,6 +14,7 @@ export default function LevelsEditor() {
     const [isEditOpen, setIsEditOpen] = useState(false);
     const [deleteId, setDeleteId] = useState<number | null>(null);
 
+
     useEffect(() => {
         LevelRepository.getAll().then(setLevels);
     }, []);

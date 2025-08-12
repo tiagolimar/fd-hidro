@@ -11,18 +11,18 @@ import DownPipesEditor from '@/pages/DownPipesEditor'
 import NoPage from '@/pages/NoPage'
 
 export function RoutesApp (){
-  return(
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="equipamentos" element={<EquipamentsEditor />} />
-          <Route path="conjuntos" element={<EquipamentSetsEditor />} />
-          <Route path="pavimentos" element={<LevelsEditor />} />
-          <Route path="prumadas" element={<DownPipesEditor />} />
-          <Route path="*" element={<NoPage />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  )
+    return(
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Layout />}>
+                    <Route index element={<Home />} />
+                    <Route path="equipamentos" element={<EquipamentsEditor />} />
+                    <Route path="conjuntos" element={<EquipamentSetsEditor />} />
+                    <Route path="pavimentos" element={<LevelsEditor />} />
+                    <Route path="prumadas" element={<DownPipesEditor />} />
+                    <Route path="*" element={<NoPage />} />
+                </Route>
+            </Routes>
+        </BrowserRouter>
+    )
 }
