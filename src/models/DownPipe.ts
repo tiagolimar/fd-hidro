@@ -22,9 +22,8 @@ export class DownPipe implements IElement {
     toTableRow(): Record<string, TableCell> {
         return {
             ID: { value: this.id ?? '', align: 'center' },
-            Nome: { value: this.name },
+            Nome: { value: this.name, align: 'center' },
             Diâmetro: { value: this.diameter, align: 'center' },
-            Sistema: { value: this.system.name },
             'UHC Total': { value: this.totaluhc, align: 'center' },
         };
     }

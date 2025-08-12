@@ -13,7 +13,7 @@ export class System implements IElement {
         return {
             ID: { value: this.id ?? '', align: 'center' },
             Nome: { value: this.name },
-            Abreviação: { value: this.systemAbreviation },
+            Abreviação: { value: this.systemAbreviation, align: 'center' },
             Tipo: { value: this.systemType },
         };
     }

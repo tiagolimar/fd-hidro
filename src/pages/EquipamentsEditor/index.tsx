@@ -7,7 +7,7 @@ import EquipamentRepository from '@/repositories/EquipamentRepository';
 import Table from '@/components/Table/Table';
 import EntityFormDialog, { type FieldConfig } from '@/components/EntityFormDialog/EntityFormDialog';
 import SectionMain from '@/components/SectionMain/SectionMain';
-import { ENTITY_ADDED_SUCCESS } from '@/constants/messages';
+import { ENTITY_ADDED_SUCCESS, ENTITY_DELETED_SUCCESS, ENTITY_UPDATED_SUCCESS } from '@/constants/messages';
 
 export default function EquipamentsEditor() {
     const [equipaments, setEquipaments] = useState<Equipament[]>([]);
@@ -60,6 +60,7 @@ export default function EquipamentsEditor() {
         );
         setIsEditOpen(false);
         setEditing(null);
+        toast.success(ENTITY_UPDATED_SUCCESS);
     }
 
     function openDelete(id: number) {
@@ -71,6 +72,7 @@ export default function EquipamentsEditor() {
         await EquipamentRepository.delete(deleteId);
         setEquipaments(prev => prev.filter(e => e.id !== deleteId));
         setDeleteId(null);
+        toast.success(ENTITY_DELETED_SUCCESS);
     }
 
     const editInitialData = editing

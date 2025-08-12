@@ -12,7 +12,7 @@ export class Equipament implements IElement {
         return {
             ID: { value: this.id ?? '', align: 'center' },
             Nome: { value: this.name },
-            Abreviação: { value: this.abreviation },
+            Abreviação: { value: this.abreviation, align: 'center' },
             UHC: { value: this.uhc, align: 'center' },
         };
     }

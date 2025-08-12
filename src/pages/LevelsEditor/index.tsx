@@ -6,14 +6,13 @@ import LevelRepository from "@/repositories/LevelRepository";
 import Table from "@/components/Table/Table";
 import EntityFormDialog, { type FieldConfig } from "@/components/EntityFormDialog/EntityFormDialog";
 import SectionMain from "@/components/SectionMain/SectionMain";
-import { ENTITY_ADDED_SUCCESS } from "@/constants/messages";
+import { ENTITY_ADDED_SUCCESS, ENTITY_DELETED_SUCCESS, ENTITY_UPDATED_SUCCESS } from "@/constants/messages";
 
 export default function LevelsEditor() {
     const [levels, setLevels] = useState<Level[]>([]);
     const [editing, setEditing] = useState<Level | null>(null);
     const [isEditOpen, setIsEditOpen] = useState(false);
     const [deleteId, setDeleteId] = useState<number | null>(null);
-
 
     useEffect(() => {
         LevelRepository.getAll().then(setLevels);
@@ -53,6 +52,7 @@ export default function LevelsEditor() {
         );
         setIsEditOpen(false);
         setEditing(null);
+        toast.success(ENTITY_UPDATED_SUCCESS);
     }
 
     function openDelete(id: number) {
@@ -64,6 +64,7 @@ export default function LevelsEditor() {
         await LevelRepository.delete(deleteId);
         setLevels(prev => prev.filter(l => l.id !== deleteId));
         setDeleteId(null);
+        toast.success(ENTITY_DELETED_SUCCESS);
     }
 
     const editInitialData = editing
