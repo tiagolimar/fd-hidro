@@ -8,7 +8,7 @@ import Table from "@/components/Table/Table";
 import SectionMain from "@/components/SectionMain/SectionMain";
 import { ENTITY_DELETED_SUCCESS } from "@/constants/messages";
 
-export default function EquipamentsList() {
+export default function EquipamentsListPage() {
     const [equipaments, setEquipaments] = useState<Equipament[]>([]);
     const navigate = useNavigate();
 

@@ -3,11 +3,13 @@ import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
 import Layout from '@/pages/Layout/Layout';
 import Home from '@/pages/Home';
 
-import EquipamentsList from '@/pages/Equipaments';
-import EquipamentForm from '@/pages/Equipaments/Form';
+import EquipamentsListPage from '@/pages/Equipaments/ListPage';
+import EquipamentCreatePage from '@/pages/Equipaments/CreatePage';
+import EquipamentEditPage from '@/pages/Equipaments/EditPage';
 import EquipamentSetsEditor from '@/pages/EquipamentSetsEditor';
-import LevelsList from '@/pages/Levels';
-import LevelForm from '@/pages/Levels/Form';
+import LevelsListPage from '@/pages/Levels/ListPage';
+import LevelCreatePage from '@/pages/Levels/CreatePage';
+import LevelEditPage from '@/pages/Levels/EditPage';
 import DownPipesEditor from '@/pages/DownPipesEditor';
 
 import NoPage from '@/pages/NoPage';
@@ -18,16 +20,16 @@ export function RoutesApp (){
             <Routes>
                 <Route path="/" element={<Layout />}>
                     <Route index element={<Home />} />
-                    <Route path="equipaments" element={<Outlet />}>
-                        <Route index element={<EquipamentsList />} />
-                        <Route path="new" element={<EquipamentForm />} />
-                        <Route path=":id" element={<EquipamentForm />} />
-                    </Route>
-                    <Route path="levels" element={<Outlet />}>
-                        <Route index element={<LevelsList />} />
-                        <Route path="new" element={<LevelForm />} />
-                        <Route path=":id" element={<LevelForm />} />
-                    </Route>
+                    <Route path="equipaments" element={<Outlet />}> 
+                        <Route index element={<EquipamentsListPage />} /> 
+                        <Route path="new" element={<EquipamentCreatePage />} /> 
+                        <Route path=":id" element={<EquipamentEditPage />} /> 
+                    </Route> 
+                    <Route path="levels" element={<Outlet />}> 
+                        <Route index element={<LevelsListPage />} /> 
+                        <Route path="new" element={<LevelCreatePage />} /> 
+                        <Route path=":id" element={<LevelEditPage />} /> 
+                    </Route> 
                     <Route path="conjuntos" element={<EquipamentSetsEditor />} />
                     <Route path="prumadas" element={<DownPipesEditor />} />
                     <Route path="*" element={<NoPage />} />

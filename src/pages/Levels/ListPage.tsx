@@ -8,7 +8,7 @@ import Table from "@/components/Table/Table";
 import SectionMain from "@/components/SectionMain/SectionMain";
 import { ENTITY_DELETED_SUCCESS } from "@/constants/messages";
 
-export default function LevelsList() {
+export default function LevelsListPage() {
     const [levels, setLevels] = useState<Level[]>([]);
     const navigate = useNavigate();
 
