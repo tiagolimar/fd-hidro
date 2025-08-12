@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react";
 
-interface LevelFormProps {
-    initialData: { name: string; height: string };
+interface EntityFormProps {
+    initialValues: { name: string; height: string };
     onSubmit: (data: { name: string; height: string }) => void | Promise<void>;
-    onCancel: () => void;
 }
 
-export default function LevelForm({ initialData, onSubmit, onCancel }: LevelFormProps) {
-    const [data, setData] = useState(initialData);
+export default function EntityForm({ initialValues, onSubmit }: EntityFormProps) {
+    const [data, setData] = useState(initialValues);
 
     useEffect(() => {
-        setData(initialData);
-    }, [initialData]);
+        setData(initialValues);
+    }, [initialValues]);
 
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
         const { name, value } = e.target;
@@ -51,13 +50,6 @@ export default function LevelForm({ initialData, onSubmit, onCancel }: LevelForm
                 />
             </div>
             <div className="flex gap-3">
-                <button
-                    type="button"
-                    onClick={onCancel}
-                    className="px-4 py-2 rounded border"
-                >
-                    Cancelar
-                </button>
                 <button type="submit" className="px-4 py-2 rounded bg-blue-600 text-white">
                     Salvar
                 </button>
