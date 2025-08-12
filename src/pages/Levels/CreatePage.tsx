@@ -6,7 +6,7 @@ import LevelRepository from "@/repositories/LevelRepository";
 import SectionMain from "@/components/SectionMain/SectionMain";
 import { ENTITY_ADDED_SUCCESS } from "@/constants/messages";
 
-import LevelForm from "./Form";
+import EntityForm from "@/components/forms/EntityForm";
 
 export default function LevelCreatePage() {
     const navigate = useNavigate();
@@ -15,17 +15,16 @@ export default function LevelCreatePage() {
         const level = new Level(data.name, Number(data.height));
         await LevelRepository.create(level);
         toast.success(ENTITY_ADDED_SUCCESS);
-        navigate("/levels");
+        navigate(-1);
     }
 
     return (
         <SectionMain>
             <Toaster />
             <h1 className="font-semibold mb-4">Adicionar Nível</h1>
-            <LevelForm
-                initialData={{ name: "", height: "" }}
+            <EntityForm
+                initialValues={{ name: "", height: "" }}
                 onSubmit={handleSubmit}
-                onCancel={() => navigate("/levels")}
             />
         </SectionMain>
     );
