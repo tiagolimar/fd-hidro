@@ -6,7 +6,7 @@ import LevelRepository from "@/repositories/LevelRepository";
 import SectionMain from "@/components/SectionMain/SectionMain";
 import { ENTITY_ADDED_SUCCESS } from "@/constants/messages";
 
-import EntityForm from "@/components/forms/EntityForm";
+import EntityForm from "@/pages/Levels/Form";
 
 export default function LevelCreatePage() {
     const navigate = useNavigate();
