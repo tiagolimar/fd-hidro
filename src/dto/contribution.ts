@@ -60,13 +60,12 @@ export function fromHydratedContribution(
             ? fromEquipamentSet(
                 new EquipamentSet(
                     model.equipament.name,
-                    model.equipament.equipaments.map(item =>
-                        item instanceof HydratedEquipamentSet
-                            ? { equipamentSetId: item.id }
-                            : { equipamentId: (item as Equipament).id }
-                    ),
-                    model.equipament.id
-                )
+                    model.equipament.items.map(item => ({
+                        equipamentId: (item.equipament as Equipament).id!,
+                        quantity: item.quantity,
+                    })),
+                    model.equipament.id,
+                ),
             )
             : fromEquipament(model.equipament as Equipament);
     return {
