@@ -2,6 +2,7 @@ import { Contribution, HydratedContribution } from '@/models/Contribution';
 import LevelRepository from '@/repositories/LevelRepository';
 import EquipamentRepository from '@/repositories/EquipamentRepository';
 import EquipamentSetRepository from '@/repositories/EquipamentSetRepository';
+import { hydrateEquipamentSet } from './hydrateEquipamentSet';
 
 export async function hydrateContribution(
     contribution: Contribution
@@ -14,7 +15,12 @@ export async function hydrateContribution(
     const equipament =
     contribution.equipamentId !== undefined
         ? await EquipamentRepository.getById(contribution.equipamentId)
-        : await EquipamentSetRepository.getById(contribution.equipamentSetId!);
+        : await (async () => {
+            const set = await EquipamentSetRepository.getById(
+                contribution.equipamentSetId!
+            );
+            return set ? await hydrateEquipamentSet(set) : undefined;
+        })();
     if (!equipament) {
         throw new Error(
             `Equipament ${

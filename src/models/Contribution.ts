@@ -1,7 +1,7 @@
 import type { IElement, TableCell } from './InterfaceElement';
 import { Level } from './Level';
 import { Equipament } from './Equipament';
-import { EquipamentSet } from './EquipamentSet';
+import { HydratedEquipamentSet } from './EquipamentSet';
 
 export class Contribution {
     constructor(
@@ -15,12 +15,12 @@ export class Contribution {
 export class HydratedContribution implements IElement {
     constructor(
     public level: Level,
-    public equipament: Equipament | EquipamentSet,
+    public equipament: Equipament | HydratedEquipamentSet,
     public id?: number
     ) {}
 
     get totaluhc(): number {
-        return this.equipament instanceof EquipamentSet
+        return this.equipament instanceof HydratedEquipamentSet
             ? this.equipament.totaluhc
             : this.equipament.uhc;
     }

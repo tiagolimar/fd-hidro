@@ -1,27 +1,20 @@
 import { EquipamentSet } from '@/models/EquipamentSet';
-import { Equipament } from '@/models/Equipament';
-import { toEquipament, fromEquipament, type EquipamentDTO } from './equipament';
+
+export interface EquipamentSetItemDTO {
+  equipamentId?: number;
+  equipamentSetId?: number;
+}
 
 export interface EquipamentSetDTO {
   id?: number;
   name: string;
-  equipaments: Array<EquipamentDTO | EquipamentSetDTO>;
+  items: EquipamentSetItemDTO[];
 }
 
 export function toEquipamentSet(dto: EquipamentSetDTO): EquipamentSet {
-    const equipaments = dto.equipaments.map(item =>
-        'equipaments' in item
-            ? toEquipamentSet(item as EquipamentSetDTO)
-            : toEquipament(item as EquipamentDTO)
-    );
-    return new EquipamentSet(dto.name, equipaments, dto.id);
+    return new EquipamentSet(dto.name, dto.items, dto.id);
 }
 
 export function fromEquipamentSet(model: EquipamentSet): EquipamentSetDTO {
-    const equipaments = model.equipaments.map(item =>
-        item instanceof EquipamentSet
-            ? fromEquipamentSet(item)
-            : fromEquipament(item as Equipament)
-    );
-    return { id: model.id, name: model.name, equipaments };
+    return { id: model.id, name: model.name, items: model.items };
 }
