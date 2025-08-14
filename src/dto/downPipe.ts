@@ -1,23 +1,21 @@
 import { DownPipe } from '@/models/DownPipe';
-import { toSystem, fromSystem, type SystemDTO } from './system';
-import {
-    toHydratedContribution,
-    fromHydratedContribution,
-    type HydratedContributionDTO,
-} from './contribution';
 
 export interface DownPipeDTO {
   id?: number;
   numeration: string;
   diameter: number;
-  system: SystemDTO;
-  contributions: HydratedContributionDTO[];
+  systemId: number;
+  contributionIds: number[];
 }
 
 export function toDownPipe(dto: DownPipeDTO): DownPipe {
-    const system = toSystem(dto.system);
-    const contributions = dto.contributions.map(toHydratedContribution);
-    return new DownPipe(dto.numeration, dto.diameter, system, contributions, dto.id);
+    return new DownPipe(
+        dto.numeration,
+        dto.diameter,
+        dto.systemId,
+        dto.contributionIds,
+        dto.id
+    );
 }
 
 export function fromDownPipe(model: DownPipe): DownPipeDTO {
@@ -25,7 +23,8 @@ export function fromDownPipe(model: DownPipe): DownPipeDTO {
         id: model.id,
         numeration: model.numeration,
         diameter: model.diameter,
-        system: fromSystem(model.system),
-        contributions: model.contributions.map(fromHydratedContribution),
+        systemId: model.systemId,
+        contributionIds: model.contributionIds,
     };
 }
+

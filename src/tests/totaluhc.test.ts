@@ -39,7 +39,9 @@ describe('totaluhc calculations', () => {
         const c1 = new HydratedContribution(level, e1)
         const c2 = new HydratedContribution(level, e2)
         const system = new System('Sistema', 'S', SystemType.Hidraulico)
-        const pipe = new DownPipe('1', 100, system, [c1, c2])
+        const pipe = new DownPipe('1', 100, 1, [1, 2])
+        pipe.system = system
+        pipe.contributions = [c1, c2]
         expect(pipe.totaluhc).toBe(30)
     })
 })

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Toaster } from 'sonner';
 import type { DownPipe } from '@/models/DownPipe';
-import DownPipeRepository from '@/repositories/DownPipeRepository';
+import DownPipeRepository, { hydrateDownPipe } from '@/repositories/DownPipeRepository';
 import Table from '@/components/Table/Table';
 import SectionMain from '@/components/SectionMain/SectionMain';
 
@@ -9,7 +9,9 @@ export default function DownPipesEditor() {
     const [downpipes, setDownpipes] = useState<DownPipe[]>([]);
 	
     useEffect(() => {
-        DownPipeRepository.getAll().then(setDownpipes);
+        DownPipeRepository.getAll()
+            .then(dps => Promise.all(dps.map(hydrateDownPipe)))
+            .then(setDownpipes);
     }, []);
 	
     return (
