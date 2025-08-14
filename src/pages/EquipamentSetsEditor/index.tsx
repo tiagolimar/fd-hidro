@@ -1,21 +1,17 @@
-import { useEffect, useState } from "react";
-import { Toaster } from "sonner";
-import type { HydratedEquipamentSet } from "@/models/EquipamentSet";
-import EquipamentSetRepository from "@/repositories/EquipamentSetRepository";
-import { hydrateEquipamentSet } from "@/utils/hydrateEquipamentSet";
-import Table from "@/components/Table/Table";
-import SectionMain from "@/components/SectionMain/SectionMain";
+import { useEffect, useState } from "react"
+import { Toaster } from "sonner"
+import type { HydratedEquipamentSet } from "@/models/EquipamentSet"
+import EquipamentSetRepository from "@/repositories/EquipamentSetRepository"
+import Table from "@/components/Table/Table"
+import SectionMain from "@/components/SectionMain/SectionMain"
 
 export default function EquipamentSetsEditor() {
-    const [equipamentSets, setEquipamentSets] = useState<HydratedEquipamentSet[]>([]);
-	
+    const [equipamentSets, setEquipamentSets] = useState<HydratedEquipamentSet[]>([])
+
     useEffect(() => {
-        EquipamentSetRepository.getAll().then(async sets => {
-            const hydrated = await Promise.all(sets.map(hydrateEquipamentSet));
-            setEquipamentSets(hydrated);
-        });
-    }, []);
-	
+        EquipamentSetRepository.getAll().then(setEquipamentSets)
+    }, [])
+
     return (
         <SectionMain>
             <Toaster />
@@ -24,3 +20,4 @@ export default function EquipamentSetsEditor() {
         </SectionMain>
     )
 }
+
