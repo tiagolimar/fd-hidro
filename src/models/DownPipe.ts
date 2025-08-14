@@ -4,19 +4,22 @@ import type { IElement, TableCell } from './InterfaceElement';
 
 export class DownPipe implements IElement {
     constructor(
-    public numeration: string,
-    public diameter: number,
-    public system: System,
-    public contributions: HydratedContribution[] = [],
-    public id?: number
+        public numeration: string,
+        public diameter: number,
+        public systemId: number,
+        public contributionIds: number[] = [],
+        public id?: number
     ) {}
+
+    system?: System;
+    contributions: HydratedContribution[] = [];
 
     get totaluhc(): number {
         return this.contributions.reduce((sum, c) => sum + c.totaluhc, 0);
     }
 
     get name(): string {
-        return `${this.system.systemAbreviation}${this.numeration}`;
+        return `${this.system?.systemAbreviation ?? ''}${this.numeration}`;
     }
 
     toTableRow(): Record<string, TableCell> {

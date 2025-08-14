@@ -1,83 +1,19 @@
 import type { AppDB } from '@/db/db';
 import { DownPipe } from '@/models/DownPipe';
-import { hydrateContribution } from '@/utils/hydrateContribution';
-import { toContribution } from '@/dto/contribution';
-import { toSystem } from '@/dto/system';
 import { fromDownPipe as fromDownPipeDTO } from '@/dto/downPipe';
 
 export async function seedDownPipes(db: AppDB) {
-    const systems = (await db.systems.toArray()).map(toSystem);
-    const contributions = (await db.contributions.toArray()).map(toContribution);
-    const s = (id: number) => systems.find(sys => sys.id === id)!;
-    const c = async (id: number) =>
-        hydrateContribution(contributions.find(con => con.id === id)!);
-
     const downpipes: DownPipe[] = [
-        new DownPipe('1', 100, s(1), [
-            await c(1),
-            await c(3),
-            await c(5),
-            await c(7),
-            await c(9),
-            await c(11),
-        ], 1),
-        new DownPipe('2', 100, s(1), [
-            await c(2),
-            await c(4),
-            await c(6),
-            await c(8),
-            await c(10),
-            await c(12),
-        ], 2),
-        new DownPipe('1', 100, s(2), [
-            await c(1),
-            await c(4),
-            await c(5),
-            await c(8),
-            await c(9),
-            await c(11),
-        ], 3),
-        new DownPipe('2', 100, s(2), [
-            await c(2),
-            await c(3),
-            await c(6),
-            await c(7),
-            await c(10),
-            await c(12),
-        ], 4),
-        new DownPipe('1', 100, s(3), [
-            await c(1),
-            await c(4),
-            await c(6),
-            await c(7),
-            await c(9),
-            await c(11),
-        ], 5),
-        new DownPipe('2', 100, s(3), [
-            await c(2),
-            await c(3),
-            await c(5),
-            await c(8),
-            await c(10),
-            await c(12),
-        ], 6),
-        new DownPipe('1', 100, s(4), [
-            await c(1),
-            await c(3),
-            await c(5),
-            await c(7),
-            await c(10),
-            await c(11),
-        ], 7),
-        new DownPipe('2', 100, s(4), [
-            await c(2),
-            await c(4),
-            await c(6),
-            await c(8),
-            await c(9),
-            await c(12),
-        ], 8),
+        new DownPipe('1', 100, 1, [1, 3, 5, 7, 9, 11], 1),
+        new DownPipe('2', 100, 1, [2, 4, 6, 8, 10, 12], 2),
+        new DownPipe('1', 100, 2, [1, 4, 5, 8, 9, 11], 3),
+        new DownPipe('2', 100, 2, [2, 3, 6, 7, 10, 12], 4),
+        new DownPipe('1', 100, 3, [1, 4, 6, 7, 9, 11], 5),
+        new DownPipe('2', 100, 3, [2, 3, 5, 8, 10, 12], 6),
+        new DownPipe('1', 100, 4, [1, 3, 5, 7, 10, 11], 7),
+        new DownPipe('2', 100, 4, [2, 4, 6, 8, 9, 12], 8),
     ];
 
     await db.downpipes.bulkAdd(downpipes.map(fromDownPipeDTO));
 }
+
