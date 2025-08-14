@@ -1,21 +1,17 @@
 import { EquipamentSet, HydratedEquipamentSet } from '@/models/EquipamentSet';
 import EquipamentRepository from '@/repositories/EquipamentRepository';
-import EquipamentSetRepository from '@/repositories/EquipamentSetRepository';
 
 export async function hydrateEquipamentSet(
-    set: EquipamentSet
+    set: EquipamentSet,
 ): Promise<HydratedEquipamentSet> {
-    const equipaments = await Promise.all(
+    const items = await Promise.all(
         set.items.map(async item => {
-            if (item.equipamentId !== undefined) {
-                const equip = await EquipamentRepository.getById(item.equipamentId);
-                if (!equip) throw new Error(`Equipament ${item.equipamentId} not found`);
-                return equip;
+            const equip = await EquipamentRepository.getById(item.equipamentId);
+            if (!equip) {
+                throw new Error(`Equipament ${item.equipamentId} not found`);
             }
-            const child = await EquipamentSetRepository.getById(item.equipamentSetId!);
-            if (!child) throw new Error(`EquipamentSet ${item.equipamentSetId} not found`);
-            return hydrateEquipamentSet(child);
-        })
+            return { equipament: equip, quantity: item.quantity };
+        }),
     );
-    return new HydratedEquipamentSet(set.name, equipaments, set.id);
+    return new HydratedEquipamentSet(set.name, items, set.id);
 }

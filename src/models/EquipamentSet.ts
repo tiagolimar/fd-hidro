@@ -1,27 +1,34 @@
 import { Equipament } from './Equipament';
+import { EquipamentSetItem } from './EquipamentSetItem';
 import type { IElement, TableCell } from './InterfaceElement';
 
 export class EquipamentSet {
     constructor(
-    public name: string,
-    public items: { equipamentId?: number; equipamentSetId?: number }[] = [],
-    public id?: number
+        public name: string,
+        public items: EquipamentSetItem[] = [],
+        public id?: number,
     ) {}
+}
+
+export interface HydratedEquipamentSetItem {
+    equipament: Equipament | HydratedEquipamentSet;
+    quantity: number;
 }
 
 export class HydratedEquipamentSet implements IElement {
     constructor(
-    public name: string,
-    public equipaments: Array<Equipament | HydratedEquipamentSet> = [],
-    public id?: number
+        public name: string,
+        public items: HydratedEquipamentSetItem[] = [],
+        public id?: number,
     ) {}
 
     get totaluhc(): number {
-        return this.equipaments.reduce((sum, item) => {
-            if (item instanceof HydratedEquipamentSet) {
-                return sum + item.totaluhc;
-            }
-            return sum + item.uhc;
+        return this.items.reduce((sum, item) => {
+            const uhc =
+                item.equipament instanceof HydratedEquipamentSet
+                    ? item.equipament.totaluhc
+                    : item.equipament.uhc;
+            return sum + uhc * item.quantity;
         }, 0);
     }
 

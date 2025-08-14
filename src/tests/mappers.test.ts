@@ -18,7 +18,7 @@ describe("DTO mappers", () => {
         const dto: EquipamentSetDTO = {
             id: 1,
             name: "Set",
-            items: [{ equipamentId: 2 }, { equipamentSetId: 3 }],
+            items: [{ equipamentId: 2, quantity: 1 }],
         };
         const model = toEquipamentSet(dto);
         expect(model).toBeInstanceOf(EquipamentSet);
