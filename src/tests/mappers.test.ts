@@ -23,25 +23,15 @@ describe("DTO mappers", () => {
         expect(model).toMatchObject(dto);
     });
 
-    it("converts nested EquipamentSetDTO to EquipamentSet", () => {
+    it("converts EquipamentSetDTO to EquipamentSet", () => {
         const dto: EquipamentSetDTO = {
             id: 1,
             name: "Set",
-            equipaments: [
-        { id: 2, name: "E1", abreviation: "E1", uhc: 5 } as EquipamentDTO,
-        {
-            id: 3,
-            name: "Nested",
-            equipaments: [
-            { id: 4, name: "E2", abreviation: "E2", uhc: 7 } as EquipamentDTO,
-            ],
-        },
-            ],
+            items: [{ equipamentId: 2 }, { equipamentSetId: 3 }],
         };
         const model = toEquipamentSet(dto);
         expect(model).toBeInstanceOf(EquipamentSet);
-        expect(model.equipaments[0]).toBeInstanceOf(Equipament);
-        expect(model.equipaments[1]).toBeInstanceOf(EquipamentSet);
+        expect(model.items).toEqual(dto.items);
     });
 
     it("converts DownPipeDTO to DownPipe", () => {

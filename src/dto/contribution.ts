@@ -8,7 +8,7 @@ export interface ContributionDTO {
 import { Contribution, HydratedContribution } from '@/models/Contribution';
 import { Level } from '@/models/Level';
 import { Equipament } from '@/models/Equipament';
-import { EquipamentSet } from '@/models/EquipamentSet';
+import { EquipamentSet, HydratedEquipamentSet } from '@/models/EquipamentSet';
 import { toLevel, fromLevel, type LevelDTO } from './level';
 import { toEquipament, fromEquipament, type EquipamentDTO } from './equipament';
 import {
@@ -46,19 +46,29 @@ export function toHydratedContribution(
 ): HydratedContribution {
     const level: Level = toLevel(dto.level);
     const equipament: Equipament | EquipamentSet =
-    'equipaments' in dto.equipament
+    'items' in dto.equipament
         ? toEquipamentSet(dto.equipament as EquipamentSetDTO)
         : toEquipament(dto.equipament as EquipamentDTO);
-    return new HydratedContribution(level, equipament, dto.id);
+    return new HydratedContribution(level, equipament as Equipament | HydratedEquipamentSet, dto.id);
 }
 
 export function fromHydratedContribution(
     model: HydratedContribution,
 ): HydratedContributionDTO {
     const equipament =
-    model.equipament instanceof EquipamentSet
-        ? fromEquipamentSet(model.equipament)
-        : fromEquipament(model.equipament as Equipament);
+        model.equipament instanceof HydratedEquipamentSet
+            ? fromEquipamentSet(
+                new EquipamentSet(
+                    model.equipament.name,
+                    model.equipament.equipaments.map(item =>
+                        item instanceof HydratedEquipamentSet
+                            ? { equipamentSetId: item.id }
+                            : { equipamentId: (item as Equipament).id }
+                    ),
+                    model.equipament.id
+                )
+            )
+            : fromEquipament(model.equipament as Equipament);
     return {
         id: model.id!,
         level: fromLevel(model.level),

@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { HydratedContribution } from '@/models/Contribution'
 import { Level } from '@/models/Level'
 import { Equipament } from '@/models/Equipament'
-import { EquipamentSet } from '@/models/EquipamentSet'
+import { HydratedEquipamentSet } from '@/models/EquipamentSet'
 import { DownPipe } from '@/models/DownPipe'
 import { System } from '@/models/System'
 import { SystemType } from '@/models/enums/SystemType'
@@ -19,7 +19,7 @@ describe('totaluhc calculations', () => {
         const level = new Level('N1', 0)
         const e1 = new Equipament('E1', 'E1', 10)
         const e2 = new Equipament('E2', 'E2', 15)
-        const set = new EquipamentSet('Set', [e1, e2])
+        const set = new HydratedEquipamentSet('Set', [e1, e2])
         const contribution = new HydratedContribution(level, set)
         expect(contribution.totaluhc).toBe(25)
     })
@@ -27,8 +27,8 @@ describe('totaluhc calculations', () => {
     it('calculates totaluhc for nested EquipamentSet', () => {
         const e1 = new Equipament('E1', 'E1', 10)
         const e2 = new Equipament('E2', 'E2', 15)
-        const inner = new EquipamentSet('Inner', [e2])
-        const root = new EquipamentSet('Root', [e1, inner])
+        const inner = new HydratedEquipamentSet('Inner', [e2])
+        const root = new HydratedEquipamentSet('Root', [e1, inner])
         expect(root.totaluhc).toBe(25)
     })
 
