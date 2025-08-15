@@ -15,7 +15,7 @@ export interface EquipamentSetDTO {
 export function toEquipamentSet(dto: EquipamentSetDTO): EquipamentSet {
     return new EquipamentSet(
         dto.name,
-        dto.items.map(i => new EquipamentSetItem(i.equipamentId, i.quantity)),
+        dto.items?.map(i => new EquipamentSetItem(i.equipamentId, i.quantity)),
         dto.id,
     );
 }

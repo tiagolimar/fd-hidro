@@ -96,6 +96,7 @@ classDiagram
         +Equipament|EquipamentSet equipament
         +totaluhc()
     }
+```
 
 - **System** – agrupa os conjuntos de tubulações de um mesmo tipo (água fria, esgoto, etc.).
 - **DownPipe** – representa a prumada em si, com suas contribuições de equipamentos em cada pavimento.
