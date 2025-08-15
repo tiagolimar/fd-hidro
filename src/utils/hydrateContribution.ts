@@ -25,6 +25,6 @@ export async function hydrateContribution(
         )
     }
 
-    return new HydratedContribution(level, equipament, contribution.id)
+    return new HydratedContribution(level, equipament, contribution.quantity, contribution.id)
 }
 

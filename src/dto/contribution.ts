@@ -1,6 +1,7 @@
 export interface ContributionDTO {
   id?: number;
   levelId: number;
+  quantity?: number;
   equipamentId?: number;
   equipamentSetId?: number;
 }
@@ -20,6 +21,7 @@ import {
 export function toContribution(dto: ContributionDTO): Contribution {
     return new Contribution(
         dto.levelId,
+        dto.quantity ?? 1,
         dto.equipamentId,
         dto.equipamentSetId,
         dto.id,
@@ -30,6 +32,7 @@ export function fromContribution(model: Contribution): ContributionDTO {
     return {
         id: model.id,
         levelId: model.levelId,
+        quantity: model.quantity,
         equipamentId: model.equipamentId,
         equipamentSetId: model.equipamentSetId,
     };
@@ -38,6 +41,7 @@ export function fromContribution(model: Contribution): ContributionDTO {
 export interface HydratedContributionDTO {
   id: number;
   level: LevelDTO;
+  quantity: number;
   equipament: EquipamentDTO | EquipamentSetDTO;
 }
 
@@ -49,7 +53,7 @@ export function toHydratedContribution(
     'items' in dto.equipament
         ? toEquipamentSet(dto.equipament as EquipamentSetDTO)
         : toEquipament(dto.equipament as EquipamentDTO);
-    return new HydratedContribution(level, equipament as Equipament | HydratedEquipamentSet, dto.id);
+    return new HydratedContribution(level, equipament as Equipament | HydratedEquipamentSet, dto.quantity, dto.id);
 }
 
 export function fromHydratedContribution(
@@ -71,6 +75,7 @@ export function fromHydratedContribution(
     return {
         id: model.id!,
         level: fromLevel(model.level),
+        quantity: model.quantity,
         equipament,
     };
 }
