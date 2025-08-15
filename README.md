@@ -38,6 +38,65 @@ O projeto utiliza indentação de **4 espaços**. Execute `eslint --fix` antes d
 
 A estrutura de dados foi modelada para representar com fidelidade os elementos do dimensionamento de prumadas. As principais entidades são:
 
+```mermaid
+classDiagram
+    System --> DownPipe
+    Equipament --> EquipamentSet
+    Level --> Contribution
+    EquipamentSet --> Contribution
+    Contribution --> DownPipe
+    DownPipe --> Memorial
+
+    class Memorial {
+        id: number;
+        name: string;
+        downpipes: DownPipe[];
+    }
+
+    class DownPipe{
+        +int id
+        +string Numeration
+        +float Diameter
+        +string systemAbreviation
+        +float totalWeight
+        +Contribution[] contributions
+        +totaluhc()
+    }
+
+    class Level{
+        -int id
+        -string name
+        -float height
+    }
+
+    class System{
+        +number id
+        +string name
+        +string systemAbreviation
+        +string systemType
+    }
+
+    class Equipament{
+        +number id
+        +string name
+        +string abreviation
+        +int uhc
+    }
+
+    class EquipamentSet{
+        +number id
+        +string name
+        +Equipament[]|EquipamentSet[] equipaments
+        +totaluhc()
+    }
+
+    class Contribution{
+        +number id
+        +Level level
+        +Equipament|EquipamentSet equipament
+        +totaluhc()
+    }
+
 - **System** – agrupa os conjuntos de tubulações de um mesmo tipo (água fria, esgoto, etc.).
 - **DownPipe** – representa a prumada em si, com suas contribuições de equipamentos em cada pavimento.
 - **Equipament** – ponto de consumo individual (pia, chuveiro...).
