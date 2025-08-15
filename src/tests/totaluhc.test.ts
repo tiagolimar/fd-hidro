@@ -27,6 +27,21 @@ describe('totaluhc calculations', () => {
         expect(contribution.totaluhc).toBe(25)
     })
 
+    it('multiplies uhc by quantity inside EquipamentSet', () => {
+        const e1 = new Equipament('E1', 'E1', 10)
+        const set = new HydratedEquipamentSet('Set', [
+            { equipament: e1, quantity: 3 },
+        ])
+        expect(set.totaluhc).toBe(30)
+    })
+
+    it('multiplies contribution totaluhc by quantity', () => {
+        const level = new Level('N1', 0)
+        const e1 = new Equipament('E1', 'E1', 10)
+        const contribution = new HydratedContribution(level, e1, 3)
+        expect(contribution.totaluhc).toBe(30)
+    })
+
     it('calculates totaluhc for nested EquipamentSet', () => {
         const e1 = new Equipament('E1', 'E1', 10)
         const e2 = new Equipament('E2', 'E2', 15)
